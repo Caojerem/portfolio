@@ -331,6 +331,9 @@ export default function Home() {
               </div>
               <div className="p-6 flex flex-col flex-grow">
                 <p className="text-sm text-gray-500">Ingénieur UX/UI IHM · ALTEN (mission)</p>
+                  <span className="mt-2 inline-block text-xs font-medium text-gray-500">
+                    🔒 Projet confidentiel
+                  </span>
                 <h3 className="mt-2 text-xl font-semibold">Renault — Projet d'innovation</h3>
                 <p className="mt-3 text-gray-600 flex-grow">
                   Conception end-to-end d’une innovation
