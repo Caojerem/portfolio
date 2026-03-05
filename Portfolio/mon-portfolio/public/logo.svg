@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="JC logo">
+  <rect width="256" height="256" rx="56" fill="#FFFFFF"></rect>
+  <rect x="18" y="18" width="220" height="220" rx="48" fill="#111111"></rect>
+
+  <!-- JC combined -->
+  <path fill="#FFFFFF" d="M86 78h22v86c0 28-17 44-45 44h-8v-22h7c16 0 24-8 24-22V78zm110 30-18 10c-6-9-14-13-26-13-22 0-38 15-38 33s16 33 38 33c12 0 20-4 26-13l18 10c-10 16-26 24-44 24-36 0-62-25-62-54s26-54 62-54c18 0 34 8 44 24z"></path>
+</svg>
