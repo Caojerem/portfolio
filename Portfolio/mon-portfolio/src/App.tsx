@@ -4,7 +4,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import Navbar from "./components/Navbar";
 
 import Home from "./pages/Home";
-import RenaultCaseStudy from "./pages/RenaultCaseStudy";
+import RenaultCaseStudy from "../../RenaultCaseStudy";
 import CarbonCaseStudy from "./pages/CarbonCaseStudy";
 import AltenCaseStudy from "./pages/AltenCaseStudy";
 import PersonalProject1 from "./pages/PersonalProject1";
