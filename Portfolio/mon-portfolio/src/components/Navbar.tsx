@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
+
 export default function Navbar() {
   const location = useLocation();
   const navigate = useNavigate();
+  const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("");
 
   const observerRef = useRef<IntersectionObserver | null>(null);
@@ -103,6 +105,25 @@ export default function Navbar() {
         >
           Me contacter
         </button>
+        
+        {/* Mobile button */}
+        <button
+          className="md:hidden"
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          ☰
+        </button>
+
+        
+        {/* menu mobile : ici, juste sous la ligne principale */}
+        {menuOpen && (
+          <div className="md:hidden mt-4 flex flex-col gap-4 border-t pt-4">
+            <button onClick={() => setMenuOpen(false)}>À propos</button>
+            <button onClick={() => setMenuOpen(false)}>Projets</button>
+            <button onClick={() => setMenuOpen(false)}>Projets perso</button>
+            <button onClick={() => setMenuOpen(false)}>Contact</button>
+          </div>
+        )}  
       </div>
     </header>
   );
