@@ -329,7 +329,7 @@ export default function Home() {
         <SectionTitle
           kicker="PROJETS PERSONNELS"
           title="Explorations & prototypes."
-          desc="Deux projets pour tester des idées, prototyper vite et apprendre."
+          desc="Trois projets pour tester des idées, prototyper vite et apprendre."
         />
 
         <div className="mt-10 grid md:grid-cols-3 gap-8">
