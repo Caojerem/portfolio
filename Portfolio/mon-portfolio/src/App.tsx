@@ -8,6 +8,7 @@ import CarbonCaseStudy from "./pages/CarbonCaseStudy";
 import AltenCaseStudy from "./pages/AltenCaseStudy";
 import PersonalProject1 from "./pages/PersonalProject1";
 import PersonalProject2 from "./pages/PersonalProject2";
+import Project3 from "./pages/Project3";
 import RenaultLocked from "./pages/RenaultLocked";
 
 
@@ -29,6 +30,7 @@ export default function App() {
         {/* Projets personnels */}
         <Route path="/project-1" element={<PersonalProject1 />} />
         <Route path="/project-2" element={<PersonalProject2 />} />
+        <Route path="/project-3" element={<Project3 />} />
       </Routes>
     </>
   );

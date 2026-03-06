@@ -15,6 +15,7 @@ import altenCover from "../assets/alten/cover.png";
 
 import project1Cover from "../assets/personal/project1.png";
 import project2Cover from "../assets/personal/project2.png";
+import project3Cover from "../assets/isochrone/map-graph.png";
 
 function Pill({ children }: { children: ReactNode }) {
   return (
@@ -77,7 +78,7 @@ function ProjectCard({
         <img
           src={cover}
           alt={title}
-          className="max-h-16 max-w-[70%] object-contain"
+          className="max-h-42 max-w-[80%] object-contain"
         />
       </div>
 
@@ -103,55 +104,6 @@ function ProjectCard({
           className="mt-6 w-full text-center bg-black text-white py-3 rounded-xl hover:opacity-80 transition"
         >
           Voir le case study
-        </button>
-      </div>
-    </motion.div>
-  );
-}
-
-function PersonalCard({
-  cover,
-  title,
-  description,
-  tags,
-  to,
-}: {
-  cover: string;
-  title: string;
-  description: string;
-  tags: string[];
-  to: string;
-}) {
-  const navigate = useNavigate();
-  return (
-    <motion.div
-      whileHover={{ y: -6 }}
-      transition={{ duration: 0.2 }}
-      className="flex flex-col rounded-2xl border overflow-hidden bg-white shadow-sm hover:shadow-lg transition"
-    >
-      <img src={cover} alt={title} className="h-44 w-full object-cover" />
-      <div className="p-6 flex flex-col flex-grow">
-        <h3 className="text-xl font-semibold">{title}</h3>
-        <p className="mt-3 text-gray-600 flex-grow">{description}</p>
-        
-        <div className="mt-4 flex flex-wrap gap-2">
-          {tags.slice(0, 3).map((t) => (
-            <Pill key={t}>{t}</Pill>
-          ))}
-        </div>
-
-        <button
-          onClick={() => {
-            navigate(to, {
-              state: {
-                fromSection: "projets-perso",
-                fromScrollY: window.scrollY,
-              },
-            });
-          }}
-          className="mt-6 w-full text-center border border-gray-900 py-3 rounded-xl hover:bg-gray-50 transition"
-        >
-          Voir le projet
         </button>
       </div>
     </motion.div>
@@ -380,20 +332,33 @@ export default function Home() {
           desc="Deux projets pour tester des idées, prototyper vite et apprendre."
         />
 
-        <div className="mt-10 grid md:grid-cols-2 gap-8">
-          <PersonalCard
+        <div className="mt-10 grid md:grid-cols-3 gap-8">
+          <ProjectCard
             cover={project1Cover}
             title="Wedding website — UX & design"
+            roleLine="UX & UI designer"
             description="Conception d’un site one-page pour un mariage : définition de la direction artistique, co-création du contenu avec les mariés et réalisation sur Webflow."
             tags={["UX design", "Figma", "Webflow"]}
             to="/project-1"
+            section="projets-perso"
           />
-          <PersonalCard
+          <ProjectCard
             cover={project2Cover}
             title="Quiz interactif — Prototype Unity"
+            roleLine="Game developer & interaction designer"
             description="Prototype d’un quiz interactif sous Unity : design du flow de jeu, gestion des bonus et création d’une interface claire pour animer une partie entre équipes."
             tags={["Interaction design", "Unity", "Game flow"]}
             to="/project-2"
+            section="projets-perso"
+          />
+          <ProjectCard
+            cover={project3Cover}
+            title="Créateur d’isochrones tout-terrain"
+            roleLine="Développeur · Université"
+            description="Prototype universitaire de génération d’isochrones tout-terrain à partir de données SIG via une adaptation de l’algorithme de Dijkstra."
+            tags={["Algorithmie", "SIG", "Dijkstra"]}
+            to="/project-3"
+            section="projets-perso"
           />
         </div>
       </section>
