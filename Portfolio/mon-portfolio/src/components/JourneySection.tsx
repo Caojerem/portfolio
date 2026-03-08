@@ -118,8 +118,8 @@ const steps: JourneyStep[] = [
       "Je cherche à concevoir des interfaces utiles, lisibles et robustes, à la croisée du design, du produit et des environnements techniques.",
     accent: "from-emerald-50 to-white",
     floatingLabel: "UX · Produit · Systèmes",
-    image : todayImg,
-    imageSec : todayImgSec,
+    image : todayImgSec,
+    imageSec : todayImg,
     illustrationTitle: "Vision",
     illustrationSubtitle: "Clarté · robustesse · impact",
     imageLabel: "Direction / ambition / prochaine étape",
@@ -165,50 +165,69 @@ function StepScene({
     >
       {/* texture / ambience */}
       <div className="absolute inset-0">
-        <div className="absolute left-[8%] top-[10%] h-40 w-40 rounded-full bg-white/60 blur-3xl" />
-        <div className="absolute right-[10%] top-[12%] h-48 w-48 rounded-full bg-black/[0.03] blur-3xl" />
-        <div className="absolute left-[20%] bottom-[8%] h-60 w-60 rounded-full bg-white/40 blur-3xl" />
+        <div className="absolute left-[8%] top-[10%] h-32 w-32 rounded-full bg-white/60 blur-3xl md:h-40 md:w-40" />
+        <div className="absolute right-[10%] top-[12%] h-36 w-36 rounded-full bg-black/[0.03] blur-3xl md:h-48 md:w-48" />
+        <div className="absolute left-[20%] bottom-[8%] h-44 w-44 rounded-full bg-white/40 blur-3xl md:h-60 md:w-60" />
       </div>
 
-      {/* large decorative timeline */}
+      {/* timeline desktop */}
       <div className="absolute left-0 right-0 top-1/2 hidden -translate-y-1/2 md:block">
         <div className="mx-20 h-[2px] bg-black/10" />
       </div>
 
-      {/* current step point */}
-      <div className="absolute right-[18%] top-1/2 z-10 hidden -translate-y-1/2 md:block">
+      {/* point desktop */}
+      <div className="absolute right-[16%] top-1/2 z-10 hidden -translate-y-1/2 md:block">
         <div
-            className={`h-6 w-6 rounded-full border-4 border-white shadow-md transition ${
+          className={`h-6 w-6 rounded-full border-4 border-white shadow-md transition ${
             active ? "scale-110 bg-black" : "bg-black/30"
-            }`}
+          }`}
         />
+      </div>
+
+      {/* mobile illustration */}
+      <div className="absolute left-4 right-4 top-4 z-10 md:hidden">
+        <div className="h-36 overflow-hidden rounded-[22px] border border-white/60 bg-white/60 shadow-lg backdrop-blur">
+          {step.image ? (
+            <img
+              src={step.image}
+              alt={step.imageLabel}
+              className="h-full w-full object-contain bg-white"
+            />
+          ) : (
+            <div className="flex h-full w-full items-center justify-center text-sm text-gray-500">
+              {step.imageLabel}
+            </div>
+          )}
         </div>
+      </div>
 
       {/* overlay text block */}
-      <div className="absolute left-6 top-6 z-20 md:left-10 md:top-10 max-w-[540px]">
-        <div className="rounded-[28px] border border-white/60 bg-white/70 p-6 shadow-xl backdrop-blur md:p-8">
+      <div className="absolute left-4 right-4 top-44 z-20 md:left-10 md:right-auto md:top-10 md:max-w-[540px]">
+        <div className="rounded-[24px] border border-white/60 bg-white/80 p-4 shadow-xl backdrop-blur md:rounded-[28px] md:p-8">
           <p className="text-sm font-medium text-gray-500">{step.period}</p>
-          <h3 className="mt-2 text-2xl font-semibold tracking-tight text-gray-900 md:text-3xl">
+
+          <h3 className="mt-2 text-xl font-semibold tracking-tight text-gray-900 md:text-3xl">
             {step.title}
           </h3>
-          <p className="mt-4 text-sm leading-relaxed text-gray-700 md:text-base">
+
+          <p className="mt-3 text-sm leading-relaxed text-gray-700 md:mt-4 md:text-base">
             {step.description}
           </p>
 
           {step.floatingLabel ? (
-            <div className="mt-5 inline-flex rounded-full border border-white/70 bg-white/70 px-3 py-1 text-xs text-gray-700 backdrop-blur">
+            <div className="mt-4 inline-flex rounded-full border border-white/70 bg-white/70 px-3 py-1 text-xs text-gray-700 backdrop-blur md:mt-5">
               {step.floatingLabel}
             </div>
           ) : null}
         </div>
       </div>
 
-      {/* floating cards */}
+      {/* floating cards desktop */}
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: active ? 1 : 0.7, y: 0 }}
         transition={{ duration: 0.35 }}
-        className="absolute right-6 bottom-15 z-20 hidden w-[260px] gap-70 md:grid rotate-2"
+        className="absolute right-6 bottom-16 z-20 hidden w-[260px] gap-6 md:grid rotate-2"
       >
         <FloatingInfoCard
           label={step.cards[0].label}
@@ -217,7 +236,7 @@ function StepScene({
         <FloatingInfoCard
           label={step.cards[1].label}
           value={step.cards[1].value}
-          className="ml-15"
+          className="ml-10"
         />
       </motion.div>
 
@@ -225,7 +244,7 @@ function StepScene({
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: active ? 1 : 0.7, y: 0 }}
         transition={{ duration: 0.4, delay: 0.05 }}
-        className="absolute bottom-45 right-15 z-20 hidden md:block -rotate-2"
+        className="absolute top-10 right-14 z-20 hidden md:block -rotate-2"
       >
         <FloatingInfoCard
           label={step.cards[2].label}
@@ -234,45 +253,46 @@ function StepScene({
         />
       </motion.div>
 
-      {/* decorative big text */}
+      {/* decorative big text - desktop only */}
       <div className="absolute bottom-5 left-6 right-6 md:left-10 md:right-10">
-        <p className="text-[44px] font-semibold leading-none tracking-tight text-black/8 md:text-[104px]">
+        <p className="hidden font-semibold leading-none tracking-tight text-black/8 md:block md:text-[104px]">
           {step.period}
         </p>
       </div>
-      {/* Grande illustration placeholder */}
-        <div className="absolute top-5 right-[25%] hidden md:block">
-        <div className="mt-4 h-[170px] overflow-hidden rounded-[22px] -rotate-1">
-            {step.image ? (
-                <img
-                src={step.image}
-                alt={step.imageLabel}
-                className="h-full w-full object-cover"
-                />
-            ) : (
-                <div className="h-full w-full bg-black/5 flex items-center justify-center text-sm text-gray-500">
-                Image
-                </div>
-            )}
-        </div>
-        </div>
 
-        {/* Petite image flottante 1 */}
-        <div className="absolute bottom-20 right-[28%] hidden md:block">
-        <div className="rounded-3xl border border-white/60 bg-white/75 p-3 shadow-lg backdrop-blur rotate-1">
-
-            {step.imageSec ? (
+      {/* grande illustration desktop */}
+      <div className="absolute top-6 right-[24%] hidden md:block">
+        <div className="h-[150px] w-[220px] overflow-hidden rounded-[24px] border border-white/60 bg-white/70 shadow-md backdrop-blur -rotate-1">
+          {step.image ? (
             <img
-                src={step.imageSec}
-                alt=""
-                className="h-28 w-28 rounded-2xl object-cover"
+              src={step.image}
+              alt={step.imageLabel}
+              className="h-full w-full object-contain bg-white"
             />
-            ) : (
-            <div className="h-28 w-28 rounded-2xl bg-black/[0.05]" />
-            )}
+          ) : (
+            <div className="flex h-full w-full items-center justify-center text-sm text-gray-500">
+              {step.imageLabel}
+            </div>
+          )}
+        </div>
+      </div>
 
+      {/* petite image secondaire desktop */}
+      <div className="absolute bottom-20 right-[28%] hidden md:block">
+        <div className="rounded-3xl border border-white/60 bg-white/75 p-3 shadow-lg backdrop-blur rotate-1">
+          {step.imageSec ? (
+            <img
+              src={step.imageSec}
+              alt=""
+              className="h-28 w-28 rounded-2xl object-cover"
+            />
+          ) : (
+            <div className="flex h-28 w-28 items-center justify-center rounded-2xl bg-black/[0.05] text-xs text-gray-500">
+              Image secondaire
+            </div>
+          )}
         </div>
-        </div>
+      </div>
     </div>
   );
 }
