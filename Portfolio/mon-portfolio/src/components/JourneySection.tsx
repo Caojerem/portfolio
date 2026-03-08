@@ -58,7 +58,7 @@ const steps: JourneyStep[] = [
     period: "Wavestone",
     title: "Refonte UX/UI du calculateur carbone GoodPlanet",
     description:
-      "Pendant 6 mois, j’ai travaillé sur la refonte du questionnaire du calculateur carbone : ateliers, audit UX, tests utilisateurs et maquettes Figma pour fluidifier le parcours et renforcer la compréhension.",
+      "C'est chez Wavestone que j'ai découvert UX/UI design. Pendant 6 mois, j’ai travaillé sur la refonte du questionnaire du calculateur carbone. C'est une expérience qui m'a donné envie de creuser davantage le design d'expérience utilisateur, en complément de ma formation technique et analytique." ,
     accent: "from-fuchsia-50 to-white",
     floatingLabel: "UX research · Figma",
     image : wavestoneImg,
@@ -67,8 +67,8 @@ const steps: JourneyStep[] = [
     illustrationSubtitle: "Audit · ateliers · maquettes",
     imageLabel: "Capture Miro / Figma / questionnaire",
     cards: [
+      { label: "Transition", value: "Vers UX/UI design" },
       { label: "Livrable", value: "Questionnaire repensé" },
-      { label: "Méthodes", value: "Audit · Tests · Ateliers" },
       { label: "Client", value: "GoodPlanet" },
     ],
   },
