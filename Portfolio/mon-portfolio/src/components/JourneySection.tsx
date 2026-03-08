@@ -48,9 +48,9 @@ const steps: JourneyStep[] = [
     illustrationSubtitle: "Analyse · structure · logique",
     imageLabel: "Schéma / diplôme / base méthodo",
     cards: [
+      { label: "Enrichissement", value: "Data & IA" },
       { label: "Approche", value: "Structurée & logique" },
       { label: "Intérêt", value: "Systèmes complexes" },
-      { label: "Enrichissement", value: "Data & IA" },
     ],
   },
   {
@@ -67,9 +67,9 @@ const steps: JourneyStep[] = [
     illustrationSubtitle: "Audit · ateliers · maquettes",
     imageLabel: "Capture Miro / Figma / questionnaire",
     cards: [
-      { label: "Client", value: "GoodPlanet" },
-      { label: "Méthodes", value: "Audit · Tests · Ateliers" },
       { label: "Livrable", value: "Questionnaire repensé" },
+      { label: "Méthodes", value: "Audit · Tests · Ateliers" },
+      { label: "Client", value: "GoodPlanet" },
     ],
   },
   {
@@ -86,9 +86,9 @@ const steps: JourneyStep[] = [
     illustrationSubtitle: "Parcours · interactions · scénarios",
     imageLabel: "Concept IHM / flow / mockup",
     cards: [
-      { label: "Rôle", value: "Ingénieur UX/UI & IHM" },
       { label: "Focus", value: "Ergonomie et UX design" },
       { label: "Contexte", value: "Innovation automobile" },
+      { label: "Rôle", value: "Ingénieur UX/UI & IHM" },
     ],
   },
   {
@@ -105,9 +105,9 @@ const steps: JourneyStep[] = [
     illustrationSubtitle: "Prototype · web · algorithmie",
     imageLabel: "Unity / Webflow / SIG preview",
     cards: [
-      { label: "Quiz", value: "Unity · gamification" },
       { label: "Tech", value: "SIG · algorithmie" },
       { label: "Web", value: "Webflow · design web" },
+      { label: "Quiz", value: "Unity · gamification" },
     ],
   },
   {
