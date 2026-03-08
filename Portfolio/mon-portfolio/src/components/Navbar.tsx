@@ -84,6 +84,9 @@ export default function Navbar() {
             <button onClick={() => goToAnchor("about")} className={linkClass("about")}>
               À propos
             </button>
+            <button onClick={() => goToAnchor("parcours")} className={linkClass("parcours")}>
+              Parcours
+            </button>
             <button onClick={() => goToAnchor("projets")} className={linkClass("projets")}>
               Projets
             </button>
@@ -121,6 +124,9 @@ export default function Navbar() {
           <div className="md:hidden mt-4 flex flex-col gap-4 border-t pt-4 text-sm">
             <button onClick={() => goToAnchor("about")} className="text-left">
               À propos
+            </button>
+            <button onClick={() => goToAnchor("parcours")} className="text-left">
+              Parcours
             </button>
             <button onClick={() => goToAnchor("projets")} className="text-left">
               Projets

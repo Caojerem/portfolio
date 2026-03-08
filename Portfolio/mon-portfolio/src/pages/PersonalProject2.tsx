@@ -140,7 +140,7 @@ export default function PersonalProject2() {
                 <p className="mt-1 font-medium">Prototype Unity + UI states</p>
               </div>
             </div>
-
+            <br></br>
             <Callout label="Note" title="Usage de l’IA (transparence)">
               <p className="text-sm">
                 ChatGPT a servi d’<strong>assistant technique</strong> pour accélérer certaines étapes
@@ -154,9 +154,6 @@ export default function PersonalProject2() {
             <div className="rounded-3xl overflow-hidden border shadow-sm">
               <img src={cover} alt="Aperçu du prototype Quiz Unity" className="w-full h-auto" />
             </div>
-            <p className="mt-3 text-sm text-gray-600">
-              Capture du prototype (à remplacer par ta meilleure vue “grille”).
-            </p>
           </div>
         </div>
       </div>
@@ -326,6 +323,12 @@ export default function PersonalProject2() {
                   className="w-full sm:w-auto text-center border border-gray-900 px-6 py-3 rounded-2xl hover:bg-gray-50 transition"
                 >
                   Retour à l’accueil
+                </Link>
+                <Link
+                  to="/project-3"
+                  className="inline-flex items-center rounded-xl bg-black text-white px-6 py-3 hover:opacity-80 transition"
+                >
+                  Voir le projet suivant
                 </Link>
               </div>
             </Section>

@@ -278,7 +278,7 @@ export default function PersonalProject1() {
                   to="/project-2"
                   className="w-full sm:w-auto text-center border border-gray-900 px-6 py-3 rounded-2xl hover:bg-gray-50 transition"
                 >
-                  Voir l’autre projet perso
+                  Voir le projet suivant
                 </Link>
               </div>
             </Section>

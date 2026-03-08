@@ -299,8 +299,8 @@ export default function CarbonCaseStudy() {
                 <Figure src={before1} alt="Avant" caption="Avant : On affiche de suite la compensation, et les 
                 détails de l’empreinte carbone se trouvent en dessous, sans explication sur le but de la compensation." />
                 <Figure src={after1} alt="Après" caption="Après : On affiche de suite les graphiques avec des comparaisons 
-                parlantes pour aider le client à comprendre son impact carbone. On met la compensation en second plan avec des explications claires.
-                de son utilisation." />
+                parlantes pour aider le client à comprendre son impact carbone. On met la compensation en second plan avec des explications 
+                claires de son utilisation." />
               </div>
 
               <div className="grid md:grid-cols-3 gap-4">

@@ -79,6 +79,7 @@ export default function AltenCaseStudy() {
 
           <p>
             Cette interface permettait de rentrer des données d'entrée (nombre de postes de travail, variables d'efficacité et de compétence, etc.) pour simuler la performance d'une usine après un incident.
+            Je me suis inspiré de l'interface de paramétrage de Unity pour l'agancement des variables d'entrée et la visualisation des résultats de simulation.
           </p>
 
           <ul className="list-disc pl-6 space-y-2">
@@ -105,7 +106,8 @@ export default function AltenCaseStudy() {
 
           <p>
             Le second projet consistait à concevoir un dashboard permettant
-            d'optimiser la vitesse d'un train sur différentes sections de rails.
+            d'optimiser la vitesse d'un train sur différentes sections de rails. Cela a été
+            réalisé avec la nouvelle fonction de Figma, Figma Make.
           </p>
 
           <ul className="list-disc pl-6 space-y-2">
@@ -144,7 +146,8 @@ export default function AltenCaseStudy() {
           <p>
             Ces deux interfaces ont permis de transformer des outils
             algorithmiques complexes en applications utilisables par
-            des ingénieurs et des analystes industriels.
+            des ingénieurs et des analystes industriels. Elles m'ont permis d'expérimenter
+            d'autres approches de design d'IHM et de renforcer ma capacité à concevoir rapidement des interfaces fonctionnelles.
           </p>
           <br />
           <div className="flex flex-col sm:flex-row gap-3">

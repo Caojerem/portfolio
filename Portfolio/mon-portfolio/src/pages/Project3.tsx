@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import type { ReactNode } from "react";
 
@@ -113,7 +113,7 @@ export default function IsochroneCaseStudy() {
             <p className="mt-5 text-lg text-gray-600 leading-relaxed">
               Projet universitaire centré sur la génération d’<strong>isochrones</strong> (zones
               atteignables depuis un point donné en un temps/effort limité) à partir de données{" "}
-              <strong>SIG</strong>. J’ai adapté l’algorithme de <strong>Dijkstra</strong> pour calculer
+              <strong>SIG</strong>. Avec mon groupe, nous avons adapté l’algorithme de <strong>Dijkstra</strong> pour calculer
               l’ensemble des nœuds accessibles et tracer l’enveloppe correspondante.
             </p>
 
@@ -272,11 +272,6 @@ export default function IsochroneCaseStudy() {
             </Section>
 
             <Section id="link" eyebrow="Code" title="Accéder au projet">
-              <p>
-                Le projet est disponible sur GitHub. Tu peux y retrouver l’implémentation et la
-                structure générale de la solution.
-              </p>
-
               <a
                 href="https://github.com/will-afs/WazeTT"
                 target="_blank"
@@ -285,6 +280,25 @@ export default function IsochroneCaseStudy() {
               >
                 Ouvrir le repo WazeTT
               </a>
+              <p>
+                Le projet est disponible sur GitHub. Tu peux y retrouver l’implémentation et la
+                structure générale de la solution.
+              </p>
+              <br></br>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Link
+                  to="/"
+                  className="w-full sm:w-auto text-center border border-gray-900 px-6 py-3 rounded-2xl hover:bg-gray-50 transition"
+                >
+                  Retour à l’accueil
+                </Link>
+                <Link
+                  to="/project-1"
+                  className="inline-flex items-center rounded-xl bg-black text-white px-6 py-3 hover:opacity-80 transition"
+                >
+                  Revoir le premier projet
+                </Link>
+              </div>
             </Section>
           </div>
         </div>

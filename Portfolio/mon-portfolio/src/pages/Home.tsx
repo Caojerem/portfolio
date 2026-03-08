@@ -8,6 +8,7 @@ import { useEffect } from "react";
 const isPrivate = import.meta.env.VITE_PORTFOLIO_MODE === "private";
 
 import profile from "../assets/profile.jpg";
+import JourneySection from "../components/JourneySection";
 
 import goodplanetCover from "../assets/goodplanet/cover.jpg";
 import renaultCover from "../assets/renault/cover.jpg";
@@ -141,13 +142,13 @@ export default function Home() {
             </p>
 
             <h1 className="mt-3 text-5xl md:text-6xl font-bold tracking-tight">
-              Je transforme des parcours complexes en expériences simples.
+              Je transforme nos idées en expériences simples.
             </h1>
 
             <p className="mt-6 text-lg text-gray-600 leading-relaxed max-w-2xl">
               Je travaille à l’intersection du design d’expérience, de l’interface et de l’interaction, 
               avec une appétence particulière pour les systèmes complexes. J'adore apprendre de nouvelles choses,
-              j'ai la chance de part mes expériences de comprendre des domaines variés (automobile, ingénierie système, spatial, programmation, data etc.).
+              ce qui me permet de discuter avec tous les interlocuteurs, des équipes produit aux équipes métier.
               <br></br>
               Mon focus : clarté, cohérence et ergonomie.
             </p>
@@ -193,8 +194,8 @@ export default function Home() {
           <div className="lg:col-span-5">
             <SectionTitle
               kicker="À PROPOS"
-              title="Une approche structurée, orientée impact."
-              desc="J’aime concevoir des expériences qui guident l’utilisateur sans friction, en alignant besoins utilisateur, contraintes techniques et objectifs produit."
+              title="Une approche structurée, orientée simplicité."
+              desc="J’aime concevoir des expériences qui guident l’utilisateur simplement, en alignant besoins utilisateur, contraintes techniques et objectifs produit."
             />
           </div>
 
@@ -227,6 +228,8 @@ export default function Home() {
         </div>
       </section>
 
+      <JourneySection />
+
       {/* PRO STORY — la “narration” */}
       <section className="bg-gray-50 border-y">
         <div className="max-w-6xl mx-auto px-6 py-16">
@@ -257,15 +260,15 @@ export default function Home() {
       <section id="projets" className="max-w-6xl mx-auto px-6 py-16">
         <SectionTitle
           kicker="EXPERIENCES PROFESSIONNELLES"
-          title="Trois projets, trois contextes, un même objectif : la clarté."
-          desc="Sélection de case studies avec une mise en avant du problème, de la démarche, et du résultat."
+          title="Trois expériences, trois contextes."
+          desc="Présentation de case studies avec une mise en avant du problème, de la démarche, et du résultat."
         />
 
         <div className="mt-10 grid md:grid-cols-3 gap-8">
           {isPrivate ? (
             <ProjectCard
               cover={renaultCover}
-              title="Renault — Modes immersifs à l’arrêt"
+              title="Renault — Projet d'innovation"
               roleLine="Ingénieur UX/UI IHM · ALTEN (mission)"
               description="Conception end-to-end..."
               tags={["Interaction model", "Workshops", "Design system"]}
