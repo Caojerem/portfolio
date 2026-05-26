@@ -1,173 +1,375 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import type { ReactNode } from "react";
+import { motion } from "framer-motion";
+import { useLanguage } from "../context/LanguageContext";
 
-import sim1 from "../assets/alten/simulator.png";
-import train1 from "../assets/alten/train-dashboard.png";
+import cover from "../assets/alten/cover.png";
+import simulator from "../assets/alten/simulator.png";
+import dashboard from "../assets/alten/train-dashboard.png";
+import ProjectDropdown from "../components/ProjectDropdown";
 
-function Section({ title, children }: any) {
+function Pill({ children }: { children: ReactNode }) {
   return (
-    <section className="space-y-4">
-      <h2 className="text-2xl font-semibold">{title}</h2>
-      <div className="text-gray-700 leading-relaxed">{children}</div>
-    </section>
+    <span className="inline-flex items-center rounded-full border px-3 py-1 text-sm text-gray-700 bg-white">
+      {children}
+    </span>
   );
 }
 
-function Figure({ src, caption }: any) {
+function SectionTitle({
+  kicker,
+  title,
+  desc,
+}: {
+  kicker?: string;
+  title: string;
+  desc?: string;
+}) {
   return (
-    <figure className="rounded-2xl overflow-hidden border">
-      <img src={src} className="w-full" />
-      <figcaption className="text-sm text-gray-600 p-3">{caption}</figcaption>
+    <div className="max-w-3xl">
+      {kicker && (
+        <p className="text-xs font-semibold tracking-wide text-gray-500">
+          {kicker}
+        </p>
+      )}
+
+      <h2 className="mt-2 text-3xl md:text-4xl font-semibold tracking-tight">
+        {title}
+      </h2>
+
+      {desc && (
+        <p className="mt-4 text-lg text-gray-600 leading-relaxed">
+          {desc}
+        </p>
+      )}
+    </div>
+  );
+}
+
+function InfoCard({
+  title,
+  desc,
+}: {
+  title: string;
+  desc: string;
+}) {
+  return (
+    <motion.div
+      whileHover={{ y: -4 }}
+      transition={{ duration: 0.2 }}
+      className="rounded-3xl border bg-white p-6 shadow-sm"
+    >
+      <h3 className="text-xl font-semibold tracking-tight">
+        {title}
+      </h3>
+
+      <p className="mt-3 text-gray-600 leading-relaxed">
+        {desc}
+      </p>
+    </motion.div>
+  );
+}
+
+function Figure({
+  src,
+  alt,
+  caption,
+}: {
+  src: string;
+  alt: string;
+  caption?: string;
+}) {
+  return (
+    <figure className="rounded-3xl overflow-hidden border bg-white shadow-sm">
+      <img
+        src={src}
+        alt={alt}
+        className="w-full h-auto"
+      />
+
+      {caption && (
+        <figcaption className="px-5 py-4 text-sm text-gray-600">
+          {caption}
+        </figcaption>
+      )}
     </figure>
   );
 }
 
 export default function AltenCaseStudy() {
+  const { t, lang } = useLanguage();
+
   const navigate = useNavigate();
   const location = useLocation();
 
   const handleBack = () => {
-  const fromScrollY = location.state?.fromScrollY;
-    navigate("/", {
+    const fromScrollY = location.state?.fromScrollY;
+
+    navigate(`/${lang}`, {
       state: {
-        restoreScrollY: typeof fromScrollY === "number" ? fromScrollY : null,
+        restoreScrollY:
+          typeof fromScrollY === "number" ? fromScrollY : null,
       },
     });
   };
+
   return (
-    
     <div className="bg-white text-gray-900">
+      {/* TOPBAR */}
+      <header className="sticky top-0 z-30 border-b bg-white/80 backdrop-blur">
+        <div className="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
+          <button
+            onClick={handleBack}
+            className="text-sm text-gray-500 hover:text-black"
+          >
+            ← {t.common.back}
+          </button>
+
+          <ProjectDropdown />
+        </div>
+      </header>
 
       {/* HERO */}
-      <div className="max-w-5xl mx-auto px-6 py-20">
+      <section className="max-w-6xl mx-auto px-6 pt-20 pb-16">
+        <div className="grid lg:grid-cols-12 gap-12 items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className="lg:col-span-7"
+          >
+            <p className="text-sm font-medium text-gray-500">
+              ALTEN · Internal projects
+            </p>
 
-      <button onClick={handleBack} className="text-sm text-gray-500 hover:text-black">
-            ← Retour
-      </button>
+            <h1 className="mt-3 text-5xl md:text-6xl font-bold tracking-tight">
+              {t.altenPage.hero.title}
+            </h1>
 
-        <h1 className="text-4xl font-bold mt-4">
-          Conception rapide d'IHM industrielles
-        </h1>
+            <p className="mt-6 text-lg text-gray-600 leading-relaxed max-w-3xl">
+              {t.altenPage.hero.desc}
+            </p>
 
-        <p className="text-gray-600 mt-4 max-w-3xl">
-          Dans le cadre de projets internes chez Alten, j'ai conçu deux interfaces
-          utilisateur en une semaine chacune pour des clients industriels.
-        </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              {t.altenPage.hero.skills.map((skill: string) => (
+                <Pill key={skill}>{skill}</Pill>
+              ))}
+            </div>
+          </motion.div>
 
-        <div className="flex gap-3 mt-6 flex-wrap">
-          <span className="border px-3 py-1 rounded-full text-sm">UX/UI</span>
-          <span className="border px-3 py-1 rounded-full text-sm">Dashboard</span>
-          <span className="border px-3 py-1 rounded-full text-sm">Simulation</span>
-        </div>
-
-      </div>
-
-      <main className="max-w-5xl mx-auto px-6 space-y-20 pb-20">
-
-        {/* CONTEXTE */}
-        <Section title="Contexte">
-          <p>
-            Ces deux projets ont été réalisés dans un contexte de conception rapide
-            d'interfaces pour des outils d'aide à la décision destinés à des clients
-            industriels.  
-            L'objectif était de concevoir des IHM simples permettant de piloter
-            des algorithmes de simulation à partir de données d'entrée.
-          </p>
-        </Section>
-
-        {/* PROJET 1 */}
-        <Section title="Projet 1 — Simulateur d'accident d'usine">
-
-          <p>
-            Cette interface permettait de rentrer des données d'entrée (nombre de postes de travail, variables d'efficacité et de compétence, etc.) pour simuler la performance d'une usine après un incident.
-            Je me suis inspiré de l'interface de paramétrage de Unity pour l'agancement des variables d'entrée et la visualisation des résultats de simulation.
-          </p>
-
-          <ul className="list-disc pl-6 space-y-2">
-            <li>Définition du nombre de postes de travail</li>
-            <li>Variables d'efficacité et de compétence</li>
-            <li>Import de fichiers de données</li>
-            <li>Simulation par algorithme de performance</li>
-          </ul>
-
-          <Figure
-            src={sim1}
-            caption="Interface de simulation permettant d'évaluer la performance de l'usine après un incident."
-          />
-
-          <p>
-            L'objectif était de permettre une réallocation rapide des ressources
-            pour maintenir la production après un incident.
-          </p>
-
-        </Section>
-
-        {/* PROJET 2 */}
-        <Section title="Projet 2 — Dashboard optimisation de train">
-
-          <p>
-            Le second projet consistait à concevoir un dashboard permettant
-            d'optimiser la vitesse d'un train sur différentes sections de rails. Cela a été
-            réalisé avec la nouvelle fonction de Figma, Figma Make.
-          </p>
-
-          <ul className="list-disc pl-6 space-y-2">
-            <li>Import de fichiers de données</li>
-            <li>Paramétrage des variables d'entrée</li>
-            <li>Visualisation des valeurs de sortie</li>
-            <li>Aide à la décision pour optimiser la vitesse</li>
-          </ul>
-
-          <Figure
-            src={train1}
-            caption="Dashboard permettant d'analyser les vitesses optimales sur différentes sections de rail."
-          />
-
-        </Section>
-
-        {/* METHODE */}
-        <Section title="Approche UX">
-
-          <p>
-            Les deux interfaces ont été conçues avec une approche centrée
-            sur la lisibilité et la rapidité d'utilisation.
-          </p>
-
-          <ul className="list-disc pl-6 space-y-2">
-            <li>Séparation claire entre données d'entrée et résultats</li>
-            <li>Visualisation simple des paramètres clés</li>
-            <li>Interface adaptée à des utilisateurs techniques</li>
-          </ul>
-
-        </Section>
-
-        {/* RESULTATS */}
-        <Section title="Résultat">
-
-          <p>
-            Ces deux interfaces ont permis de transformer des outils
-            algorithmiques complexes en applications utilisables par
-            des ingénieurs et des analystes industriels. Elles m'ont permis d'expérimenter
-            d'autres approches de design d'IHM et de renforcer ma capacité à concevoir rapidement des interfaces fonctionnelles.
-          </p>
-          <br />
-          <div className="flex flex-col sm:flex-row gap-3">
-            <Link
-              to="/"
-              className="w-full sm:w-auto text-center border border-gray-900 px-6 py-3 rounded-2xl hover:bg-gray-50 transition"
-            >
-              Retour à l’accueil
-            </Link>
-            <Link
-              to="/renault"
-              className="w-full sm:w-auto text-center bg-black text-white px-6 py-3 rounded-2xl hover:opacity-80 transition"
-            >
-              Projet suivant (Renault)
-            </Link>
+          <div className="lg:col-span-5">
+            <div className="rounded-3xl overflow-hidden border shadow-sm bg-gray-50">
+              <img
+                src={cover}
+                alt="ALTEN"
+                className="w-full h-[340px] object-contain p-10"
+              />
+            </div>
           </div>
-        </Section>
+        </div>
+      </section>
 
-      </main>
+      {/* CONTEXT */}
+      <section className="max-w-6xl mx-auto px-6 pb-16">
+        <div className="rounded-[32px] border bg-gray-50 p-8 md:p-10">
+          <SectionTitle
+            kicker={t.altenPage.context.kicker}
+            title={t.altenPage.context.title}
+            desc={t.altenPage.context.desc}
+          />
 
+          <div className="mt-10 grid md:grid-cols-3 gap-5">
+            {t.altenPage.context.cards.map(
+              (
+                card: { title: string; value: string },
+                index: number
+              ) => (
+                <div
+                  key={index}
+                  className="rounded-2xl border bg-white p-5"
+                >
+                  <p className="text-xs text-gray-500">
+                    {card.title}
+                  </p>
+
+                  <p className="mt-1 font-medium">
+                    {card.value}
+                  </p>
+                </div>
+              )
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* APPROACH */}
+      <section className="bg-gray-50 border-y">
+        <div className="max-w-6xl mx-auto px-6 py-16">
+          <SectionTitle
+            kicker={t.altenPage.approach.kicker}
+            title={t.altenPage.approach.title}
+            desc={t.altenPage.approach.desc}
+          />
+
+          <div className="mt-12 grid md:grid-cols-4 gap-6">
+            {t.altenPage.approach.steps.map(
+              (
+                step: {
+                  number: string;
+                  title: string;
+                  desc: string;
+                },
+                index: number
+              ) => (
+                <div
+                  key={index}
+                  className="rounded-3xl border bg-white p-6"
+                >
+                  <p className="text-xs font-semibold text-gray-500">
+                    {step.number}
+                  </p>
+
+                  <h3 className="mt-3 text-xl font-semibold">
+                    {step.title}
+                  </h3>
+
+                  <p className="mt-3 text-gray-600 leading-relaxed">
+                    {step.desc}
+                  </p>
+                </div>
+              )
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* PROJECT 1 */}
+      <section className="max-w-6xl mx-auto px-6 py-20">
+        <div className="grid lg:grid-cols-12 gap-12 items-center">
+          <div className="lg:col-span-6">
+            <Figure
+              src={simulator}
+              alt="Industrial simulator"
+            />
+          </div>
+
+          <div className="lg:col-span-6">
+            <SectionTitle
+              kicker={t.altenPage.project1.kicker}
+              title={t.altenPage.project1.title}
+              desc={t.altenPage.project1.desc}
+            />
+
+            <div className="mt-8 grid gap-5">
+              {t.altenPage.project1.cards.map(
+                (
+                  card: {
+                    title: string;
+                    desc: string;
+                  },
+                  index: number
+                ) => (
+                  <InfoCard
+                    key={index}
+                    title={card.title}
+                    desc={card.desc}
+                  />
+                )
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* PROJECT 2 */}
+      <section className="bg-gray-50 border-y">
+        <div className="max-w-6xl mx-auto px-6 py-20">
+          <div className="grid lg:grid-cols-12 gap-12 items-center">
+            <div className="lg:col-span-6 order-2 lg:order-1">
+              <SectionTitle
+                kicker={t.altenPage.project2.kicker}
+                title={t.altenPage.project2.title}
+                desc={t.altenPage.project2.desc}
+              />
+
+              <div className="mt-8 grid gap-5">
+                {t.altenPage.project2.cards.map(
+                  (
+                    card: {
+                      title: string;
+                      desc: string;
+                    },
+                    index: number
+                  ) => (
+                    <InfoCard
+                      key={index}
+                      title={card.title}
+                      desc={card.desc}
+                    />
+                  )
+                )}
+              </div>
+            </div>
+
+            <div className="lg:col-span-6 order-1 lg:order-2">
+              <Figure
+                src={dashboard}
+                alt="Train dashboard"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* LEARNINGS */}
+      <section className="max-w-6xl mx-auto px-6 py-20">
+        <SectionTitle
+          kicker={t.altenPage.learnings.kicker}
+          title={t.altenPage.learnings.title}
+          desc={t.altenPage.learnings.desc}
+        />
+
+        <div className="mt-10 grid lg:grid-cols-2 gap-8">
+          <div className="rounded-3xl border p-8">
+            <p className="text-gray-700 leading-relaxed">
+              {t.altenPage.learnings.text}
+            </p>
+          </div>
+
+          <div className="rounded-3xl border p-8">
+            <ul className="space-y-4 text-gray-700">
+              {t.altenPage.learnings.points.map(
+                (point: string, index: number) => (
+                  <li key={index}>• {point}</li>
+                )
+              )}
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section className="max-w-6xl mx-auto px-6 pb-24">
+        <div className="flex flex-col md:flex-row gap-4 justify-between">
+          <button
+            onClick={() => {
+              navigate(`/${lang}`, {
+                state: {
+                  scrollTo: "projets",
+                },
+              });
+            }}
+            className="rounded-2xl border border-gray-300 px-6 py-4 hover:bg-gray-50 transition text-center"
+          >
+            {t.caseStudyCta.back}
+          </button>
+
+          <a
+            href={`/${lang}/project-1`}
+            className="rounded-2xl bg-black text-white px-6 py-4 hover:opacity-80 transition text-center"
+          >
+            {t.caseStudyCta.next}
+          </a>
+        </div>
+      </section>
     </div>
   );
 }

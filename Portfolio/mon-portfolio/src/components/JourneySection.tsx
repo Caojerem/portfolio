@@ -11,7 +11,7 @@ import explorationsImg from "../assets/journey/unity.png";
 import explorationsImgSec from "../assets/journey/webflow.png";
 import todayImg from "../assets/journey/aujourdhui.png";
 import todayImgSec from "../assets/journey/scientifique.png";
-//import { i } from "framer-motion/client";
+import { useLanguage } from "../context/LanguageContext";
 
 type FloatingCard = {
   label: string;
@@ -33,101 +33,50 @@ type JourneyStep = {
   imageLabel: string;
 };
 
-const steps: JourneyStep[] = [
+const stepVisuals = [
   {
-    id: 0,
-    period: "Formation",
-    title: "Ingénieur en aérospatial et informatique",
-    description:
-      "Passionné par les systèmes complexes, j’ai construit une base solide en résolution de problèmes, avec une appétence dans la data et le développement.",
     accent: "from-blue-50 to-white",
-    floatingLabel: "Secteur aérospatial · Data · Systèmes d'information · Développement",
-    image : formationImg,
-    imageSec : formationImgSec,
+    image: formationImg,
+    imageSec: formationImgSec,
     illustrationTitle: "Fondations",
     illustrationSubtitle: "Analyse · structure · logique",
-    imageLabel: "Schéma / diplôme / base méthodo",
-    cards: [
-      { label: "Enrichissement", value: "Data & IA" },
-      { label: "Approche", value: "Structurée & logique" },
-      { label: "Intérêt", value: "Systèmes complexes" },
-    ],
+    imageLabel: "Formation",
   },
+
   {
-    id: 1,
-    period: "Wavestone",
-    title: "Refonte UX/UI du calculateur carbone GoodPlanet",
-    description:
-      "C'est chez Wavestone que j'ai découvert UX/UI design. Pendant 6 mois, j’ai travaillé sur la refonte du questionnaire du calculateur carbone. C'est une expérience qui m'a donné envie de creuser davantage le design d'expérience utilisateur, en complément de ma formation technique et analytique." ,
     accent: "from-fuchsia-50 to-white",
-    floatingLabel: "UX research · Figma",
-    image : wavestoneImg,
-    imageSec : wavestoneImgSec,
+    image: wavestoneImg,
+    imageSec: wavestoneImgSec,
     illustrationTitle: "Case study client",
     illustrationSubtitle: "Audit · ateliers · maquettes",
-    imageLabel: "Capture Miro / Figma / questionnaire",
-    cards: [
-      { label: "Transition", value: "Vers UX/UI design" },
-      { label: "Livrable", value: "Questionnaire repensé" },
-      { label: "Client", value: "GoodPlanet" },
-    ],
+    imageLabel: "Wavestone",
   },
+
   {
-    id: 2,
-    period: "ALTEN · Renault",
-    title: "Concevoir des interfaces ergonomiques pour l’automobile",
-    description:
-      "En mission chez Renault, j’ai travaillé sur des parcours IHM liés à de nombreuses fonctions, parfois dans un contexte d’innovation, en collaboration avec les équipes UX, produit et métiers.",
     accent: "from-yellow-50 to-white",
-    floatingLabel: "IHM · Innovation",
-    image : renaultImg,
-    imageSec : renaultImgSec,
+    image: renaultImg,
+    imageSec: renaultImgSec,
     illustrationTitle: "Innovation véhicule",
     illustrationSubtitle: "Parcours · interactions · scénarios",
-    imageLabel: "Concept IHM / flow / mockup",
-    cards: [
-      { label: "Focus", value: "Ergonomie et UX design" },
-      { label: "Contexte", value: "Innovation automobile" },
-      { label: "Rôle", value: "Ingénieur UX/UI & IHM" },
-    ],
+    imageLabel: "Renault",
   },
+
   {
-    id: 3,
-    period: "Explorations",
-    title: "Des projets pour expérimenter, prototyper et apprendre",
-    description:
-      "Quiz interactif sous Unity, site sous Webflow, génération d’isochrones à partir de cartes SIG : ces projets me permettent d’explorer l’interaction, l’algorithmie et le prototypage sous différents angles.",
     accent: "from-cyan-50 to-white",
-    floatingLabel: "Unity · Webflow · SIG · IA",
-    image : explorationsImg,
-    imageSec : explorationsImgSec,
+    image: explorationsImg,
+    imageSec: explorationsImgSec,
     illustrationTitle: "Explorations",
     illustrationSubtitle: "Prototype · web · algorithmie",
-    imageLabel: "Unity / Webflow / SIG preview",
-    cards: [
-      { label: "Tech", value: "SIG · algorithmie" },
-      { label: "Web", value: "Webflow · design web" },
-      { label: "Quiz", value: "Unity · gamification" },
-    ],
+    imageLabel: "Explorations",
   },
+
   {
-    id: 4,
-    period: "Aujourd’hui",
-    title: "Designer d’expériences pour systèmes complexes",
-    description:
-      "Je cherche à concevoir des interfaces utiles, lisibles et robustes, à la croisée du design, du produit et des environnements techniques.",
     accent: "from-emerald-50 to-white",
-    floatingLabel: "UX · Produit · Systèmes",
-    image : todayImgSec,
-    imageSec : todayImg,
+    image: todayImgSec,
+    imageSec: todayImg,
     illustrationTitle: "Vision",
     illustrationSubtitle: "Clarté · robustesse · impact",
-    imageLabel: "Direction / ambition / prochaine étape",
-    cards: [
-      { label: "Ambition", value: "Concevoir utile" },
-      { label: "Positionnement", value: "UX + technique" },
-      { label: "Recherche", value: "Produit & complexité" },
-    ],
+    imageLabel: "Aujourd’hui",
   },
 ];
 
@@ -299,6 +248,14 @@ function StepScene({
 
 export default function JourneySection() {
   const [current, setCurrent] = useState(0);
+  const { t } = useLanguage();
+  const steps: JourneyStep[] = t.journey.steps.map(
+    (step: any, index: number) => ({
+      ...step,
+      ...stepVisuals[index],
+      id: index,
+    })
+  );
 
   const goPrev = () => {
     setCurrent((prev) => (prev === 0 ? 0 : prev - 1));
@@ -313,14 +270,15 @@ export default function JourneySection() {
       <div className="max-w-6xl mx-auto px-6">
         <div className="max-w-3xl">
           <p className="text-xs font-semibold tracking-wide text-gray-500">
-            PARCOURS
+            {t.journey.kicker}
           </p>
+
           <h2 className="mt-2 text-3xl md:text-4xl font-semibold tracking-tight">
-            Une fresque de mon parcours.
+            {t.journey.title}
           </h2>
+
           <p className="mt-4 text-lg text-gray-600">
-            Une lecture visuelle de mon évolution, entre approche analytique,
-            design d’interaction et expériences produit.
+            {t.journey.subtitle}
           </p>
         </div>
 

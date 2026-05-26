@@ -1,6 +1,8 @@
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 import type { ReactNode } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+
+import { useLanguage } from "../context/LanguageContext";
 
 import cover from "../assets/personal/quiz/cover.png";
 import grid from "../assets/personal/quiz/grid.png";
@@ -9,6 +11,7 @@ import question from "../assets/personal/quiz/question.png";
 import flowSystem from "../assets/personal/quiz/quiz-flow-system.png";
 import flowInteraction from "../assets/personal/quiz/quiz-flow-interaction.png";
 import flowStates from "../assets/personal/quiz/quiz-flow-states.png";
+import ProjectDropdown from "../components/ProjectDropdown";
 
 function Tag({ children }: { children: ReactNode }) {
   return (
@@ -32,10 +35,18 @@ function Section({
   return (
     <section id={id} className="scroll-mt-24">
       {eyebrow ? (
-        <p className="text-sm font-medium tracking-wide text-gray-500">{eyebrow}</p>
+        <p className="text-sm font-medium tracking-wide text-gray-500">
+          {eyebrow}
+        </p>
       ) : null}
-      <h2 className="mt-2 text-2xl md:text-3xl font-semibold tracking-tight">{title}</h2>
-      <div className="mt-6 space-y-4 text-gray-700 leading-relaxed">{children}</div>
+
+      <h2 className="mt-2 text-2xl md:text-3xl font-semibold tracking-tight">
+        {title}
+      </h2>
+
+      <div className="mt-6 space-y-4 text-gray-700 leading-relaxed">
+        {children}
+      </div>
     </section>
   );
 }
@@ -52,8 +63,11 @@ function Figure({
   return (
     <figure className="rounded-2xl overflow-hidden border bg-white">
       <img src={src} alt={alt} className="w-full h-auto" />
+
       {caption ? (
-        <figcaption className="px-4 py-3 text-sm text-gray-600">{caption}</figcaption>
+        <figcaption className="px-4 py-3 text-sm text-gray-600">
+          {caption}
+        </figcaption>
       ) : null}
     </figure>
   );
@@ -70,9 +84,17 @@ function Callout({
 }) {
   return (
     <div className="rounded-2xl border bg-gray-50 p-6">
-      <p className="text-xs font-semibold tracking-wide text-gray-500">{label}</p>
-      <p className="mt-2 text-lg font-semibold text-gray-900">{title}</p>
-      <div className="mt-3 text-gray-700">{children}</div>
+      <p className="text-xs font-semibold tracking-wide text-gray-500">
+        {label}
+      </p>
+
+      <p className="mt-2 text-lg font-semibold text-gray-900">
+        {title}
+      </p>
+
+      <div className="mt-3 text-gray-700">
+        {children}
+      </div>
     </div>
   );
 }
@@ -81,12 +103,22 @@ export default function PersonalProject2() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const handleBack = () => {
-  const y = location.state?.fromScrollY;
-  const section = location.state?.fromSection;
+  const { t, lang } = useLanguage();
 
-  navigate("/", { state: { restoreScrollY: y, scrollTo: section } });
+  const page = t.quizProjectPage;
+
+  const handleBack = () => {
+    const y = location.state?.fromScrollY;
+    const section = location.state?.fromSection;
+
+    navigate("/", {
+      state: {
+        restoreScrollY: y,
+        scrollTo: section,
+      },
+    });
   };
+
   return (
     <div className="bg-white text-gray-900">
       {/* Top bar */}
@@ -94,11 +126,12 @@ export default function PersonalProject2() {
         <div className="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
           <button
             onClick={handleBack}
-            className="text-sm font-medium text-gray-700 hover:text-gray-900"
+            className="text-sm text-gray-500 hover:text-black"
           >
-            ← Retour
+            ← {t.common.back}
           </button>
-          <span className="text-sm text-gray-500">Projet personnel</span>
+
+          <ProjectDropdown />
         </div>
       </header>
 
@@ -106,53 +139,75 @@ export default function PersonalProject2() {
       <div className="max-w-6xl mx-auto px-6 pt-10 pb-12">
         <div className="grid lg:grid-cols-12 gap-8 items-start">
           <div className="lg:col-span-7">
-            <p className="text-sm font-medium text-gray-500">Unity · Interaction design · Prototype</p>
+            <p className="text-sm font-medium text-gray-500">
+              {page.hero.kicker}
+            </p>
 
             <h1 className="mt-3 text-4xl md:text-5xl font-bold tracking-tight">
-              Quiz interactif — du format oral à une expérience UI gamifiée
+              {page.hero.title}
             </h1>
 
             <p className="mt-5 text-lg text-gray-600 leading-relaxed">
-              Grand amateur de quiz, j’en organisais souvent à l’oral. J’ai voulu transformer ce format
-              en une application Unity qui structure le déroulement du jeu : <strong>grille</strong>,
-              <strong>phases</strong>, <strong>bonus</strong> et <strong>feedback</strong>.
+              {page.hero.desc}
             </p>
 
             <div className="mt-6 flex flex-wrap gap-2">
-              <Tag>UX</Tag>
-              <Tag>Interaction Design</Tag>
-              <Tag>IA de contenu (XML)</Tag>
-              <Tag>Prototype</Tag>
-              <Tag>Unity</Tag>
+              {page.hero.tags.map((tag: string) => (
+                <Tag key={tag}>{tag}</Tag>
+              ))}
             </div>
 
             <div className="mt-8 grid sm:grid-cols-3 gap-4">
               <div className="rounded-2xl border p-4">
-                <p className="text-xs text-gray-500">Objectif</p>
-                <p className="mt-1 font-medium">Animer un quiz sans friction</p>
+                <p className="text-xs text-gray-500">
+                  {page.hero.cards.objective.label}
+                </p>
+
+                <p className="mt-1 font-medium">
+                  {page.hero.cards.objective.value}
+                </p>
               </div>
+
               <div className="rounded-2xl border p-4">
-                <p className="text-xs text-gray-500">Format</p>
-                <p className="mt-1 font-medium">Phases + grille + bonus</p>
+                <p className="text-xs text-gray-500">
+                  {page.hero.cards.format.label}
+                </p>
+
+                <p className="mt-1 font-medium">
+                  {page.hero.cards.format.value}
+                </p>
               </div>
+
               <div className="rounded-2xl border p-4">
-                <p className="text-xs text-gray-500">Livrables</p>
-                <p className="mt-1 font-medium">Prototype Unity + UI states</p>
+                <p className="text-xs text-gray-500">
+                  {page.hero.cards.deliverables.label}
+                </p>
+
+                <p className="mt-1 font-medium">
+                  {page.hero.cards.deliverables.value}
+                </p>
               </div>
             </div>
-            <br></br>
-            <Callout label="Note" title="Usage de l’IA (transparence)">
+
+            <br />
+
+            <Callout
+              label={page.hero.note.label}
+              title={page.hero.note.title}
+            >
               <p className="text-sm">
-                ChatGPT a servi d’<strong>assistant technique</strong> pour accélérer certaines étapes
-                (snippets, debug, structuration), tout en gardant la conception UX/UI et les décisions
-                produit sous mon contrôle.
+                {page.hero.note.desc}
               </p>
             </Callout>
           </div>
 
           <div className="lg:col-span-5">
             <div className="rounded-3xl overflow-hidden border shadow-sm">
-              <img src={cover} alt="Aperçu du prototype Quiz Unity" className="w-full h-auto" />
+              <img
+                src={cover}
+                alt="Quiz prototype"
+                className="w-full h-auto"
+              />
             </div>
           </div>
         </div>
@@ -164,28 +219,58 @@ export default function PersonalProject2() {
           {/* TOC */}
           <aside className="lg:col-span-3">
             <div className="lg:sticky lg:top-20">
-              <p className="text-xs font-semibold tracking-wide text-gray-500">SOMMAIRE</p>
+              <p className="text-xs font-semibold tracking-wide text-gray-500">
+                {page.toc.title}
+              </p>
+
               <nav className="mt-4 space-y-2">
-                <a href="#context" className="block text-sm text-gray-700 hover:text-gray-900">
-                  Contexte & problème
+                <a
+                  href="#context"
+                  className="block text-sm text-gray-700 hover:text-gray-900"
+                >
+                  {page.toc.items.context}
                 </a>
-                <a href="#format" className="block text-sm text-gray-700 hover:text-gray-900">
-                  Format du jeu
+
+                <a
+                  href="#format"
+                  className="block text-sm text-gray-700 hover:text-gray-900"
+                >
+                  {page.toc.items.format}
                 </a>
-                <a href="#system" className="block text-sm text-gray-700 hover:text-gray-900">
-                  Architecture du système
+
+                <a
+                  href="#system"
+                  className="block text-sm text-gray-700 hover:text-gray-900"
+                >
+                  {page.toc.items.system}
                 </a>
-                <a href="#flow" className="block text-sm text-gray-700 hover:text-gray-900">
-                  Flow d’interaction
+
+                <a
+                  href="#flow"
+                  className="block text-sm text-gray-700 hover:text-gray-900"
+                >
+                  {page.toc.items.flow}
                 </a>
-                <a href="#states" className="block text-sm text-gray-700 hover:text-gray-900">
-                  États d’interface
+
+                <a
+                  href="#states"
+                  className="block text-sm text-gray-700 hover:text-gray-900"
+                >
+                  {page.toc.items.states}
                 </a>
-                <a href="#screens" className="block text-sm text-gray-700 hover:text-gray-900">
-                  Écrans clés
+
+                <a
+                  href="#screens"
+                  className="block text-sm text-gray-700 hover:text-gray-900"
+                >
+                  {page.toc.items.screens}
                 </a>
-                <a href="#result" className="block text-sm text-gray-700 hover:text-gray-900">
-                  Résultat & impact
+
+                <a
+                  href="#result"
+                  className="block text-sm text-gray-700 hover:text-gray-900"
+                >
+                  {page.toc.items.result}
                 </a>
               </nav>
             </div>
@@ -193,147 +278,190 @@ export default function PersonalProject2() {
 
           {/* Body */}
           <div className="lg:col-span-9 space-y-16">
-            <Section id="context" eyebrow="Contexte" title="Pourquoi passer du quiz oral à une interface">
-              <p>
-                Lors d’un quiz animé manuellement, plusieurs difficultés reviennent : gestion du tour des équipes,
-                suivi des bonus/règles spéciales, manque de support visuel, risques d’erreurs et difficulté à intégrer
-                des contenus multimédia.
-              </p>
+            {/* CONTEXT */}
+            <Section
+              id="context"
+              eyebrow={page.sections.context.eyebrow}
+              title={page.sections.context.title}
+            >
+              <p>{page.sections.context.desc}</p>
 
               <div className="grid md:grid-cols-3 gap-4">
-                <Callout label="Douleur" title="Charge cognitive animateur">
-                  <p>Beaucoup de règles et d’états à suivre en parallèle.</p>
-                </Callout>
-                <Callout label="Douleur" title="Lisibilité pour les joueurs">
-                  <p>Progression et thèmes moins visibles sans support UI.</p>
-                </Callout>
-                <Callout label="Douleur" title="Rythme & erreurs">
-                  <p>Transitions et bonus peuvent casser le flow et créer des incohérences.</p>
-                </Callout>
+                {page.sections.context.callouts.map(
+                  (item: any, index: number) => (
+                    <Callout
+                      key={index}
+                      label={item.label}
+                      title={item.title}
+                    >
+                      <p>{item.desc}</p>
+                    </Callout>
+                  )
+                )}
               </div>
             </Section>
 
-            <Section id="format" eyebrow="Format du jeu" title="Une grille, des phases, et des bonus interactifs">
-              <p>
-                Le quiz est inspiré du “Grand Quiz” / formats télévisés. La grille comporte{" "}
-                <strong>4 thèmes</strong> (un par équipe) + <strong>1 thème neutre</strong>.
-              </p>
+            {/* FORMAT */}
+            <Section
+              id="format"
+              eyebrow={page.sections.format.eyebrow}
+              title={page.sections.format.title}
+            >
+              <p>{page.sections.format.desc}</p>
+
               <ul className="list-disc pl-5 space-y-2">
-                <li><strong>Phase 1 — Burger Quiz :</strong> détermine l’ordre de passage via une séquence de rapidité.</li>
-                <li><strong>Phase 2 — Mémorisation :</strong> la grille s’affiche 30s, les équipes mémorisent l’emplacement.</li>
-                <li><strong>Phase 3 — Boucle de tours :</strong> une équipe choisit une question ; les autres peuvent activer des bonus.</li>
+                {page.sections.format.bullets.map((item: string) => (
+                  <li key={item}>{item}</li>
+                ))}
               </ul>
 
-              <Callout label="Décision UX" title="Pourquoi la grille visible 30s ?">
-                <p>
-                  Créer un moment de tension stratégique et d’attention collective, tout en renforçant la mémorisation.
-                </p>
+              <Callout
+                label={page.sections.format.callout.label}
+                title={page.sections.format.callout.title}
+              >
+                <p>{page.sections.format.callout.desc}</p>
               </Callout>
             </Section>
 
-            <Section id="system" eyebrow="Architecture" title="Architecture du système de jeu">
-              <p>
-                J’ai structuré le quiz en phases afin de fluidifier l’expérience et limiter les erreurs de transition.
-              </p>
+            {/* SYSTEM */}
+            <Section
+              id="system"
+              eyebrow={page.sections.system.eyebrow}
+              title={page.sections.system.title}
+            >
+              <p>{page.sections.system.desc}</p>
 
               <Figure
                 src={flowSystem}
-                alt="Architecture du système de jeu"
-                caption="Macro-architecture : setup → Burger Quiz → mémorisation → boucle de jeu → fin."
+                alt="System architecture"
+                caption={page.sections.system.figureCaption}
               />
             </Section>
 
-            <Section id="flow" eyebrow="Interaction" title="Flow d’interaction (tour par tour)">
-              <p>
-                Chaque tour suit un enchaînement stable : choix d’une case, difficulté, affichage de la question, gestion
-                des bonus, validation et mise à jour des scores/états.
-              </p>
+            {/* FLOW */}
+            <Section
+              id="flow"
+              eyebrow={page.sections.flow.eyebrow}
+              title={page.sections.flow.title}
+            >
+              <p>{page.sections.flow.desc}</p>
 
               <Figure
                 src={flowInteraction}
-                alt="Flow d’interaction du tour"
-                caption="Micro-flow : choisir → question → bonus (si déclenché) → validation → score → équipe suivante."
+                alt="Interaction flow"
+                caption={page.sections.flow.figureCaption}
               />
             </Section>
 
-            <Section id="states" eyebrow="Interface" title="États UI (lisibilité + robustesse)">
-              <p>
-                L’un des enjeux UX était de rendre visibles les états (cases jouées, équipe active, bonus déclenchés) et
-                d’éviter les transitions incohérentes.
-              </p>
+            {/* STATES */}
+            <Section
+              id="states"
+              eyebrow={page.sections.states.eyebrow}
+              title={page.sections.states.title}
+            >
+              <p>{page.sections.states.desc}</p>
 
               <Figure
                 src={flowStates}
-                alt="États UI"
-                caption="États UI : grille / question / bonus / feedback (notifications)."
+                alt="UI states"
+                caption={page.sections.states.figureCaption}
               />
             </Section>
 
-            <Section id="screens" eyebrow="Prototype" title="Écrans clés du prototype Unity">
+            {/* SCREENS */}
+            <Section
+              id="screens"
+              eyebrow={page.sections.screens.eyebrow}
+              title={page.sections.screens.title}
+            >
               <div className="grid md:grid-cols-2 gap-6">
                 <Figure
                   src={grid}
-                  alt="Écran grille"
-                  caption="Grille : thèmes, état des cases, lisibilité rapide."
+                  alt="Grid screen"
+                  caption={page.sections.screens.figures.grid}
                 />
+
                 <Figure
                   src={question}
-                  alt="Écran question"
-                  caption="Question : focus, support multimédia (image/audio/vidéo)."
+                  alt="Question screen"
+                  caption={page.sections.screens.figures.question}
                 />
               </div>
 
-              <Callout label="Bonus" title="Mécaniques de bonus interactifs">
+              <Callout
+                label={page.sections.screens.bonus.label}
+                title={page.sections.screens.bonus.title}
+              >
                 <ul className="mt-2 list-disc pl-5 space-y-1">
-                  <li><strong>Duel :</strong> une équipe challenge l’équipe active (mini UI de buzz + verrouillage visuel).</li>
-                  <li><strong>Hold Up :</strong> tentative de vol si l’équipe active échoue (notification + état clair).</li>
-                  <li><strong>x2 :</strong> double la valeur d’une question (confirmation visuelle).</li>
+                  {page.sections.screens.bonus.items.map(
+                    (item: string) => (
+                      <li key={item}>{item}</li>
+                    )
+                  )}
                 </ul>
               </Callout>
 
-              <Callout label="Feedback UX" title="Notifications dynamiques">
+              <Callout
+                label={page.sections.screens.feedback.label}
+                title={page.sections.screens.feedback.title}
+              >
                 <p className="text-sm">
-                  Pour améliorer la compréhension en temps réel, des notifications rendent visibles les actions : “Équipe 2
-                  lance un Duel”, “Hold Up tenté”, “x2 utilisé”, etc.
+                  {page.sections.screens.feedback.desc}
                 </p>
               </Callout>
             </Section>
 
-            <Section id="result" eyebrow="Résultat" title="Résultat & impact">
+            {/* RESULT */}
+            <Section
+              id="result"
+              eyebrow={page.sections.result.eyebrow}
+              title={page.sections.result.title}
+            >
               <ul className="list-disc pl-5 space-y-2">
-                <li>Gestion de plusieurs équipes et phases de jeu</li>
-                <li>Grille mémorisable + états clairs (cases jouées)</li>
-                <li>Bonus stratégiques et feedbacks en temps réel</li>
-                <li>Support multimédia (image/audio/vidéo)</li>
-                <li>Questions chargées via fichiers XML (quiz personnalisable)</li>
+                {page.sections.result.bullets.map((item: string) => (
+                  <li key={item}>{item}</li>
+                ))}
               </ul>
 
-              <Callout label="Ce que ça démontre" title="Compétences UX / IHM">
+              <Callout
+                label={page.sections.result.callout.label}
+                title={page.sections.result.callout.title}
+              >
                 <ul className="mt-2 list-disc pl-5 space-y-1">
-                  <li>Conception de systèmes interactifs</li>
-                  <li>Gestion d’états complexes et robustesse des transitions</li>
-                  <li>Design d’interaction pour expérience collective</li>
-                  <li>Prototypage rapide et itérations</li>
+                  {page.sections.result.callout.items.map(
+                    (item: string) => (
+                      <li key={item}>{item}</li>
+                    )
+                  )}
                 </ul>
               </Callout>
-
-              <div className="flex flex-col sm:flex-row gap-3">
-                <Link
-                  to="/"
-                  className="w-full sm:w-auto text-center border border-gray-900 px-6 py-3 rounded-2xl hover:bg-gray-50 transition"
-                >
-                  Retour à l’accueil
-                </Link>
-                <Link
-                  to="/project-3"
-                  className="inline-flex items-center rounded-xl bg-black text-white px-6 py-3 hover:opacity-80 transition"
-                >
-                  Voir le projet suivant
-                </Link>
-              </div>
             </Section>
           </div>
         </div>
+        <br />
+        <section className="max-w-6xl mx-auto px-6 pb-24">
+        <div className="flex flex-col md:flex-row gap-4 justify-between">
+          <button
+            onClick={() => {
+              navigate(`/${lang}`, {
+                state: {
+                  scrollTo: "projets-perso",
+                },
+              });
+            }}
+            className="rounded-2xl border border-gray-300 px-6 py-4 hover:bg-gray-50 transition text-center"
+          >
+            {t.caseStudyCta.back}
+          </button>
+
+          <a
+            href={`/${lang}/project-3`}
+            className="rounded-2xl bg-black text-white px-6 py-4 hover:opacity-80 transition text-center"
+          >
+            {t.caseStudyCta.next}
+          </a>
+        </div>
+      </section>
       </main>
     </div>
   );
