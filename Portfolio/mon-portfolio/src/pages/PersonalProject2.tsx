@@ -7,7 +7,6 @@ import { useLanguage } from "../context/LanguageContext";
 import cover from "../assets/personal/quiz/cover.png";
 import grid from "../assets/personal/quiz/grid.png";
 import question from "../assets/personal/quiz/question.png";
-import ProjectNavigation from "../components/ProjectNavigation";
 
 import flowSystem from "../assets/personal/quiz/quiz-flow-system.png";
 import flowInteraction from "../assets/personal/quiz/quiz-flow-interaction.png";
@@ -455,7 +454,12 @@ export default function PersonalProject2() {
             {t.caseStudyCta.back}
           </button>
 
-          <ProjectNavigation />
+          <a
+            href={`/${lang}/project-3`}
+            className="rounded-2xl bg-black text-white px-6 py-4 hover:opacity-80 transition text-center"
+          >
+            {t.caseStudyCta.next}
+          </a>
         </div>
       </section>
       </main>
