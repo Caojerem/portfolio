@@ -2,6 +2,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import type { ReactNode } from "react";
 import { motion } from "framer-motion";
 import { useLanguage } from "../context/LanguageContext";
+import ProjectNavigation from "../components/ProjectNavigation";
 
 import cover from "../assets/alten/cover.png";
 import simulator from "../assets/alten/simulator.png";

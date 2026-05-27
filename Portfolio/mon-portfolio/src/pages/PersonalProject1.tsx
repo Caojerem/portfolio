@@ -5,6 +5,7 @@ import moodboard from "../assets/personal/wedding/figma-moodboard.png";
 import navVariants from "../assets/personal/wedding/navbar-variants.png";
 import finalWebflow from "../assets/personal/wedding/final-webflow.png";
 
+
 import { useLanguage } from "../context/LanguageContext";
 import ProjectDropdown from "../components/ProjectDropdown";
 

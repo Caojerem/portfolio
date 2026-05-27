@@ -1,6 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
 
+
 import cover from "../assets/goodplanet/cover.jpg";
 import flow from "../assets/goodplanet/figma-flow.png";
 import before1 from "../assets/goodplanet/before-1.png";
