@@ -246,11 +246,11 @@ function StepScene({
   );
 }
 
-export default function JourneySection() {
+export default function JourneySection({ vertical = false }: { vertical?: boolean }) {
   const [current, setCurrent] = useState(0);
   const { t } = useLanguage();
   const steps: JourneyStep[] = t.journey.steps.map(
-    (step: any, index: number) => ({
+    (step: Omit<JourneyStep, "id" | "accent" | "illustrationTitle" | "illustrationSubtitle" | "imageLabel">, index: number) => ({
       ...step,
       ...stepVisuals[index],
       id: index,
@@ -264,6 +264,36 @@ export default function JourneySection() {
   const goNext = () => {
     setCurrent((prev) => (prev === steps.length - 1 ? prev : prev + 1));
   };
+
+  if (vertical) return (
+    <ol className="relative ml-2 border-l border-gray-200 md:ml-4">
+      {steps.map((step) => (
+        <li key={step.id} className="relative pb-14 pl-6 last:pb-0 md:pb-20 md:pl-12">
+          <span aria-hidden="true" className="absolute -left-2 top-2 h-4 w-4 rounded-full border-4 border-white bg-black ring-1 ring-gray-300" />
+          <article className="grid min-w-0 gap-6 lg:grid-cols-[1.1fr_1fr] lg:gap-12">
+            <div className="min-w-0">
+              <p className="text-sm font-semibold text-gray-500"><span aria-hidden="true">0{step.id + 1} · </span>{step.period}</p>
+              <h2 className="mt-3 text-2xl font-semibold tracking-tight md:text-3xl">{step.title}</h2>
+              <p className="mt-4 leading-relaxed text-gray-600">{step.description}</p>
+              <dl className="mt-6 grid gap-3 sm:grid-cols-3">
+                {step.cards.map((card) => <div key={card.label} className="min-w-0 rounded-2xl bg-gray-50 p-4">
+                  <dt className="text-xs text-gray-500">{card.label}</dt>
+                  <dd className="mt-1 text-sm font-medium">{card.value}</dd>
+                </div>)}
+              </dl>
+            </div>
+            <div className={`flex min-w-0 flex-col justify-center rounded-[28px] border border-gray-100 bg-gradient-to-br p-5 sm:p-8 ${step.accent}`}>
+              <div className="grid grid-cols-[2fr_1fr] items-center gap-3">
+                <img src={step.image} alt="" loading="lazy" className="aspect-[4/3] w-full rounded-2xl bg-white object-contain p-3" />
+                <img src={step.imageSec} alt="" loading="lazy" className="aspect-square w-full rounded-2xl bg-white object-contain p-2" />
+              </div>
+              <p className="mt-5 text-center text-sm font-medium text-gray-600">{step.floatingLabel}</p>
+            </div>
+          </article>
+        </li>
+      ))}
+    </ol>
+  );
 
   return (
     <section id="parcours" className="bg-white py-20">

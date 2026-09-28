@@ -1,3 +1,6 @@
+import MobileCoverArtwork from "../components/MobileCoverArtwork";
+import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 //import { Link } from "react-router-dom";
 import type { ReactNode } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -111,7 +114,7 @@ export default function PersonalProject2() {
     const y = location.state?.fromScrollY;
     const section = location.state?.fromSection;
 
-    navigate("/", {
+    navigate(`/${lang}`, {
       state: {
         restoreScrollY: y,
         scrollTo: section,
@@ -119,7 +122,129 @@ export default function PersonalProject2() {
     });
   };
 
+
+  const [mobileStep, setMobileStep] = useState(0);
+  const mobileSteps = [
+    {
+      label: page.hero.title,
+      content: (
+        <div className="relative min-h-[calc(100svh-10.5rem)] overflow-hidden rounded-[28px] bg-gray-900">
+          <MobileCoverArtwork src={cover} variant="quiz" />
+          <div className="absolute inset-x-0 bottom-0 p-6 text-white">
+            <p className="text-xs font-semibold tracking-[0.14em] text-white/75">{page.hero.kicker}</p>
+            <h1 className="mt-3 text-4xl font-bold leading-[1.05] tracking-tight">{page.hero.title}</h1>
+            <p className="mt-4 max-w-md text-sm leading-relaxed text-white/85">{page.hero.desc}</p>
+          </div>
+        </div>
+      ),
+    },
+    { label: page.sections.context.title, content: (
+      <div><p className="text-xs font-semibold text-gray-500">{page.sections.context.eyebrow}</p><h2 className="mt-2 text-3xl font-semibold">{page.sections.context.title}</h2><p className="mt-4 text-gray-600">{page.sections.context.desc}</p><div className="mt-6 space-y-3">{page.sections.context.callouts.map((c)=><Callout key={c.title} label={c.label} title={c.title}><p>{c.desc}</p></Callout>)}</div></div>
+    )},
+    { label: page.sections.format.title, content: (
+      <div><p className="text-xs font-semibold text-gray-500">{page.sections.format.eyebrow}</p><h2 className="mt-2 text-3xl font-semibold">{page.sections.format.title}</h2><p className="mt-4 text-gray-600">{page.sections.format.desc}</p><ul className="mt-5 space-y-2 text-gray-700">{page.sections.format.bullets.map((b:string)=><li key={b}>• {b}</li>)}</ul><div className="mt-6"><Callout label={page.sections.format.callout.label} title={page.sections.format.callout.title}><p>{page.sections.format.callout.desc}</p></Callout></div></div>
+    )},
+    { label: page.sections.system.title, content: (
+      <div><p className="text-xs font-semibold text-gray-500">{page.sections.system.eyebrow}</p><h2 className="mt-2 text-3xl font-semibold">{page.sections.system.title}</h2><p className="mt-4 text-gray-600">{page.sections.system.desc}</p><div className="mt-6"><Figure src={flowSystem} alt="System architecture" caption={page.sections.system.figureCaption}/></div></div>
+    )},
+    { label: page.sections.flow.title, content: (
+      <div><p className="text-xs font-semibold text-gray-500">{page.sections.flow.eyebrow}</p><h2 className="mt-2 text-3xl font-semibold">{page.sections.flow.title}</h2><p className="mt-4 text-gray-600">{page.sections.flow.desc}</p><div className="mt-6"><Figure src={flowInteraction} alt="Interaction flow" caption={page.sections.flow.figureCaption}/></div></div>
+    )},
+    { label: page.sections.states.title, content: (
+      <div><p className="text-xs font-semibold text-gray-500">{page.sections.states.eyebrow}</p><h2 className="mt-2 text-3xl font-semibold">{page.sections.states.title}</h2><p className="mt-4 text-gray-600">{page.sections.states.desc}</p><div className="mt-6"><Figure src={flowStates} alt="UI states" caption={page.sections.states.figureCaption}/></div></div>
+    )},
+    { label: page.sections.screens.title, content: (
+      <div><p className="text-xs font-semibold text-gray-500">{page.sections.screens.eyebrow}</p><h2 className="mt-2 text-3xl font-semibold">{page.sections.screens.title}</h2><div className="mt-6 space-y-4"><Figure src={grid} alt="Grid screen" caption={page.sections.screens.figures.grid}/><Figure src={question} alt="Question screen" caption={page.sections.screens.figures.question}/></div><div className="mt-5"><Callout label={page.sections.screens.bonus.label} title={page.sections.screens.bonus.title}><ul className="mt-2 space-y-1">{page.sections.screens.bonus.items.map((i:string)=><li key={i}>• {i}</li>)}</ul></Callout></div></div>
+    )},
+    { label: page.sections.result.title, content: (
+      <div><p className="text-xs font-semibold text-gray-500">{page.sections.result.eyebrow}</p><h2 className="mt-2 text-3xl font-semibold">{page.sections.result.title}</h2><ul className="mt-6 space-y-3 text-gray-700">{page.sections.result.bullets.map((b:string)=><li key={b}>• {b}</li>)}</ul><div className="mt-6"><Callout label={page.sections.result.callout.label} title={page.sections.result.callout.title}><ul className="mt-2 space-y-1">{page.sections.result.callout.items.map((i:string)=><li key={i}>• {i}</li>)}</ul></Callout></div></div>
+    )},
+  ];
+
+  const goMobileStep = (index: number) => {
+    setMobileStep(Math.max(0, Math.min(index, mobileSteps.length - 1)));
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const goMobilePrevious = () => {
+    if (mobileStep === 0) {
+      handleBack();
+      return;
+    }
+    goMobileStep(mobileStep - 1);
+  };
   return (
+<>
+
+      <div className="lg:hidden min-h-screen bg-white text-gray-900 pb-20">
+        <header className="sticky top-0 z-40 border-b border-gray-200 bg-white/90 backdrop-blur">
+          <div className="mx-auto flex min-h-14 items-center justify-between px-4">
+            <button
+              onClick={handleBack}
+              className="inline-flex min-h-11 items-center gap-1 rounded-xl px-2 text-sm text-gray-600 transition active:bg-gray-100"
+            >
+              ← <span>{t.common.back}</span>
+            </button>
+            <span className="text-xs font-medium tracking-wide text-gray-500">
+              {mobileStep + 1} / {mobileSteps.length}
+            </span>
+          </div>
+
+          <div className="flex gap-1.5 px-4 pb-3">
+            {mobileSteps.map((step, index) => (
+              <button
+                key={step.label}
+                onClick={() => goMobileStep(index)}
+                aria-label={step.label}
+                className={`h-1 flex-1 rounded-full transition ${
+                  index <= mobileStep ? "bg-gray-900" : "bg-gray-200"
+                }`}
+              />
+            ))}
+          </div>
+        </header>
+
+        <main className="px-5 py-6">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={mobileStep}
+              initial={{ opacity: 0, x: 18 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -18 }}
+              transition={{ duration: 0.22 }}
+              className="mx-auto max-w-xl"
+            >
+              {mobileSteps[mobileStep].content}
+            </motion.div>
+          </AnimatePresence>
+        </main>
+
+        <div className="fixed inset-x-0 bottom-0 z-30 border-t border-gray-200 bg-white/95 backdrop-blur">
+          <div className="mx-auto flex max-w-xl items-center justify-between px-4 py-3 [padding-bottom:max(0.75rem,env(safe-area-inset-bottom))]">
+            <button
+              onClick={goMobilePrevious}
+              className="inline-flex min-h-10 min-w-10 items-center justify-start text-xl font-light text-gray-700 transition active:opacity-50"
+              aria-label="Previous"
+            >
+              ←
+            </button>
+            <button
+              onClick={() => {
+                if (mobileStep < mobileSteps.length - 1) {
+                  goMobileStep(mobileStep + 1);
+                } else {
+                  navigate(`/${lang}/project-3`);
+                }
+              }}
+              className="inline-flex min-h-10 min-w-10 items-center justify-end text-xl font-light text-gray-700 transition active:opacity-50"
+              aria-label="Next"
+            >
+              →
+            </button>
+          </div>
+        </div>
+      </div>
+      <div className="hidden lg:block">
     <div className="bg-white text-gray-900">
       {/* Top bar */}
       <header className="sticky top-0 z-30 border-b bg-white/80 backdrop-blur">
@@ -288,7 +413,7 @@ export default function PersonalProject2() {
 
               <div className="grid md:grid-cols-3 gap-4">
                 {page.sections.context.callouts.map(
-                  (item: any, index: number) => (
+                  (item, index: number) => (
                     <Callout
                       key={index}
                       label={item.label}
@@ -464,5 +589,7 @@ export default function PersonalProject2() {
       </section>
       </main>
     </div>
+      </div>
+    </>
   );
 }

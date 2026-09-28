@@ -79,6 +79,17 @@ export const translations = {
         },
 
         {
+          period: "Explorations",
+          title: "Expérimenter, prototyper et apprendre",
+          description: "Des projets personnels pour explorer le design et l’interaction : un site de mariage sur Webflow, un quiz interactif sur Unity et la conception de ce portfolio React.",
+          floatingLabel: "Explorations & prototypes",
+          cards: [
+            { label: "Web", value: "Webflow & React" },
+            { label: "Interaction", value: "Prototype Unity" },
+            { label: "Approche", value: "Tester & apprendre" },
+          ],
+        },
+        {
           period: "Aujourd’hui",
           title: "Créer des expériences simples pour des systèmes complexes",
           description:
@@ -1293,6 +1304,17 @@ export const translations = {
           ],
         },
 
+        {
+          period: "Explorations",
+          title: "Experimenting, prototyping and learning",
+          description: "Personal projects exploring design and interaction: a wedding website built with Webflow, an interactive Unity quiz and the design of this React portfolio.",
+          floatingLabel: "Explorations & prototypes",
+          cards: [
+            { label: "Web", value: "Webflow & React" },
+            { label: "Interaction", value: "Unity prototype" },
+            { label: "Approach", value: "Test & learn" },
+          ],
+        },
         {
           period: "Today",
           title: "Designing simple experiences for complex systems",

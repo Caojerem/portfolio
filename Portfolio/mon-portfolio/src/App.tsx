@@ -6,6 +6,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import MainLayout from "./layout/MainLayout";
 
 import Home from "./pages/Home";
+import Journey from "./pages/Journey";
 import CarbonCaseStudy from "./pages/CarbonCaseStudy";
 import AltenCaseStudy from "./pages/AltenCaseStudy";
 import PersonalProject1 from "./pages/PersonalProject1";
@@ -30,6 +31,7 @@ export default function App() {
               <Routes>
                 <Route path="" element={<Home />} />
 
+                <Route path="parcours" element={<Journey />} />
                 {/* Case studies */}
                 <Route path="renault" element={<RenaultLocked />} />
                 <Route path="carbon-calculator" element={<CarbonCaseStudy />} />
@@ -52,6 +54,7 @@ export default function App() {
               <Routes>
                 <Route path="" element={<Home />} />
 
+                <Route path="journey" element={<Journey />} />
                 {/* mêmes pages */}
                 <Route path="renault" element={<RenaultLocked />} />
                 <Route path="carbon-calculator" element={<CarbonCaseStudy />} />

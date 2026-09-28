@@ -1,0 +1,12 @@
+.mobile-cover-artwork { position:absolute; inset:0; overflow:hidden; pointer-events:none; background:#fff; }
+.mobile-cover-artwork__visual { position:absolute; inset:0 0 auto; height:68%; overflow:hidden; }
+.mobile-cover-artwork img { position:absolute; max-width:none; height:auto; top:48%; transform:translateY(-50%); }
+.mobile-cover-artwork--renault img { width:240%; left:-100%; }
+.mobile-cover-artwork--goodplanet img { width:110%; left:-5%; top:30%; }
+.mobile-cover-artwork--alten { background:#466e4b; }
+.mobile-cover-artwork--alten img { width:235%; left:-99%; top:52%; }
+.mobile-cover-artwork--wedding { background:#eee9dc; }
+.mobile-cover-artwork--wedding img { width:122%; left:-30%; top:46%; }
+.mobile-cover-artwork--quiz img { width:128%; left:-23%; top:48%; }
+.mobile-cover-artwork--portfolio img { width:122%; left:-32%; top:46%; }
+.mobile-cover-artwork::after { content:""; position:absolute; inset:0; background:linear-gradient(to bottom,transparent 10%,rgba(8,12,15,.18) 26%,rgba(8,12,15,.88) 46%,#080c0f 66%); }

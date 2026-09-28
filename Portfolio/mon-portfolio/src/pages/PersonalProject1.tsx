@@ -1,3 +1,6 @@
+import MobileCoverArtwork from "../components/MobileCoverArtwork";
+import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import cover from "../assets/personal/wedding/cover.png";
@@ -86,7 +89,126 @@ export default function PersonalProject1() {
     });
   };
 
+
+  const [mobileStep, setMobileStep] = useState(0);
+  const mobileSteps = [
+    {
+      label: data.hero.title,
+      content: (
+        <div className="relative min-h-[calc(100svh-10.5rem)] overflow-hidden rounded-[28px] bg-gray-900">
+          <MobileCoverArtwork src={cover} variant="wedding" />
+          <div className="absolute inset-x-0 bottom-0 p-6 text-white">
+            <p className="text-xs font-semibold tracking-[0.14em] text-white/75">{data.hero.kicker}</p>
+            <h1 className="mt-3 text-4xl font-bold leading-[1.05] tracking-tight">{data.hero.title}</h1>
+            <p className="mt-4 max-w-md text-sm leading-relaxed text-white/85">{data.hero.desc}</p>
+          </div>
+        </div>
+      ),
+    },
+    { label: data.context.title, content: (
+      <div><p className="text-xs font-semibold text-gray-500">{data.context.eyebrow}</p><h2 className="mt-2 text-3xl font-semibold">{data.context.title}</h2><p className="mt-4 text-gray-600">{data.context.desc}</p><div className="mt-6 space-y-3">{data.context.cards.map((c)=><div key={c.title} className="rounded-2xl border bg-gray-50 p-5"><p className="text-xs text-gray-500">{c.label}</p><h3 className="mt-2 font-semibold">{c.title}</h3><p className="mt-2 text-sm text-gray-600">{c.desc}</p></div>)}</div></div>
+    )},
+    { label: data.artisticDirection.title, content: (
+      <div><p className="text-xs font-semibold text-gray-500">{data.artisticDirection.eyebrow}</p><h2 className="mt-2 text-3xl font-semibold">{data.artisticDirection.title}</h2><p className="mt-4 text-gray-600">{data.artisticDirection.desc}</p><div className="mt-6"><Figure src={moodboard} alt="Moodboard" caption={data.artisticDirection.figureCaption}/></div></div>
+    )},
+    { label: data.workshops.title, content: (
+      <div><p className="text-xs font-semibold text-gray-500">{data.workshops.eyebrow}</p><h2 className="mt-2 text-3xl font-semibold">{data.workshops.title}</h2><p className="mt-4 text-gray-600">{data.workshops.desc}</p><ul className="mt-6 space-y-3 text-gray-700">{data.workshops.bullets.map((b:string)=><li key={b}>• {b}</li>)}</ul></div>
+    )},
+    { label: data.navigation.title, content: (
+      <div><p className="text-xs font-semibold text-gray-500">{data.navigation.eyebrow}</p><h2 className="mt-2 text-3xl font-semibold">{data.navigation.title}</h2><p className="mt-4 text-gray-600">{data.navigation.desc}</p><div className="mt-6"><Figure src={navVariants} alt="Navigation variants" caption={data.navigation.figureCaption}/></div><div className="mt-5 rounded-2xl border bg-gray-50 p-5"><p className="text-xs text-gray-500">{data.navigation.decision.label}</p><h3 className="mt-2 font-semibold">{data.navigation.decision.title}</h3><p className="mt-2 text-sm text-gray-600">{data.navigation.decision.desc}</p></div></div>
+    )},
+    { label: data.build.title, content: (
+      <div><p className="text-xs font-semibold text-gray-500">{data.build.eyebrow}</p><h2 className="mt-2 text-3xl font-semibold">{data.build.title}</h2><p className="mt-4 text-gray-600">{data.build.desc}</p><ul className="mt-5 space-y-2 text-gray-700">{data.build.bullets.map((b:string)=><li key={b}>• {b}</li>)}</ul><div className="mt-6"><Figure src={finalWebflow} alt="Final Webflow website" caption={data.build.figureCaption}/></div></div>
+    )},
+    { label: data.result.title, content: (
+      <div><p className="text-xs font-semibold text-gray-500">{data.result.eyebrow}</p><h2 className="mt-2 text-3xl font-semibold">{data.result.title}</h2><p className="mt-4 text-gray-600">{data.result.desc}</p><a href="https://rodolphe-et-alice-mariage.webflow.io/#Home_page" target="_blank" rel="noopener noreferrer" className="mt-6 inline-flex rounded-xl bg-black px-5 py-3 text-sm text-white">{data.result.liveCta}</a></div>
+    )},
+  ];
+
+  const goMobileStep = (index: number) => {
+    setMobileStep(Math.max(0, Math.min(index, mobileSteps.length - 1)));
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const goMobilePrevious = () => {
+    if (mobileStep === 0) {
+      handleBack();
+      return;
+    }
+    goMobileStep(mobileStep - 1);
+  };
   return (
+<>
+
+      <div className="lg:hidden min-h-screen bg-white text-gray-900 pb-20">
+        <header className="sticky top-0 z-40 border-b border-gray-200 bg-white/90 backdrop-blur">
+          <div className="mx-auto flex min-h-14 items-center justify-between px-4">
+            <button
+              onClick={handleBack}
+              className="inline-flex min-h-11 items-center gap-1 rounded-xl px-2 text-sm text-gray-600 transition active:bg-gray-100"
+            >
+              ← <span>{t.common.back}</span>
+            </button>
+            <span className="text-xs font-medium tracking-wide text-gray-500">
+              {mobileStep + 1} / {mobileSteps.length}
+            </span>
+          </div>
+
+          <div className="flex gap-1.5 px-4 pb-3">
+            {mobileSteps.map((step, index) => (
+              <button
+                key={step.label}
+                onClick={() => goMobileStep(index)}
+                aria-label={step.label}
+                className={`h-1 flex-1 rounded-full transition ${
+                  index <= mobileStep ? "bg-gray-900" : "bg-gray-200"
+                }`}
+              />
+            ))}
+          </div>
+        </header>
+
+        <main className="px-5 py-6">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={mobileStep}
+              initial={{ opacity: 0, x: 18 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -18 }}
+              transition={{ duration: 0.22 }}
+              className="mx-auto max-w-xl"
+            >
+              {mobileSteps[mobileStep].content}
+            </motion.div>
+          </AnimatePresence>
+        </main>
+
+        <div className="fixed inset-x-0 bottom-0 z-30 border-t border-gray-200 bg-white/95 backdrop-blur">
+          <div className="mx-auto flex max-w-xl items-center justify-between px-4 py-3 [padding-bottom:max(0.75rem,env(safe-area-inset-bottom))]">
+            <button
+              onClick={goMobilePrevious}
+              className="inline-flex min-h-10 min-w-10 items-center justify-start text-xl font-light text-gray-700 transition active:opacity-50"
+              aria-label="Previous"
+            >
+              ←
+            </button>
+            <button
+              onClick={() => {
+                if (mobileStep < mobileSteps.length - 1) {
+                  goMobileStep(mobileStep + 1);
+                } else {
+                  navigate(`/${lang}/project-2`);
+                }
+              }}
+              className="inline-flex min-h-10 min-w-10 items-center justify-end text-xl font-light text-gray-700 transition active:opacity-50"
+              aria-label="Next"
+            >
+              →
+            </button>
+          </div>
+        </div>
+      </div>
+      <div className="hidden lg:block">
     <div className="bg-white text-gray-900">
       {/* Top bar */}
       <header className="sticky top-0 z-30 border-b bg-white/80 backdrop-blur">
@@ -239,7 +361,7 @@ export default function PersonalProject1() {
               <p>{data.context.desc}</p>
 
               <div className="grid md:grid-cols-3 gap-4">
-                {data.context.cards.map((card: any) => (
+                {data.context.cards.map((card) => (
                   <div
                     key={card.title}
                     className="rounded-2xl border bg-gray-50 p-6"
@@ -381,5 +503,7 @@ export default function PersonalProject1() {
       </section>
       </main>
     </div>
+      </div>
+    </>
   );
 }
