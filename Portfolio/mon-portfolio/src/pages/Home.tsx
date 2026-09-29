@@ -156,9 +156,10 @@ function MobileProjectTile({ project }: { project: MobileProject }) {
           },
         })
       }
-      className="min-w-0 self-start text-left"
+      aria-label={project.title}
+      className="flex h-full min-w-0 flex-col cursor-pointer rounded-2xl border border-gray-300 bg-white p-2 text-left shadow-sm transition-colors hover:border-gray-400 active:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gray-900"
     >
-      <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-gray-100">
+      <div className="relative aspect-[4/3] w-full shrink-0 overflow-hidden rounded-xl border border-gray-300 bg-gray-100">
         <img
           src={project.cover}
           alt={project.title}
@@ -168,7 +169,7 @@ function MobileProjectTile({ project }: { project: MobileProject }) {
           {categoryLabel}
         </span>
       </div>
-      <h3 className="mt-2 min-h-10 whitespace-normal break-words text-sm font-semibold leading-5 tracking-tight">
+      <h3 className="mt-2 line-clamp-3 h-[60px] shrink-0 whitespace-normal break-words px-1 text-sm font-semibold leading-5 tracking-tight">
         {project.title}
       </h3>
     </button>
@@ -301,42 +302,39 @@ export default function Home() {
               initial={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: reduceMotion ? 0 : "-8%" }}
               transition={{ duration: reduceMotion ? 0 : 0.45, ease: [0.22, 1, 0.36, 1] }}
-              className="fixed inset-0 z-[100] bg-white p-4 lg:p-0"
+              className="fixed inset-0 z-[100] bg-white p-4 lg:p-6"
             >
-              <div className="h-full overflow-y-auto overscroll-contain rounded-[28px] bg-gray-950 text-white lg:rounded-none">
+              <div className="h-full overflow-y-auto overscroll-contain rounded-[28px] border border-slate-300/80 bg-gray-50 text-gray-900 shadow-sm">
                 <div className="relative isolate flex min-h-full flex-col justify-end overflow-hidden lg:justify-center">
                   <div
                     aria-hidden="true"
-                    className="pointer-events-none absolute inset-0 -z-20 bg-cover bg-center opacity-30 blur-3xl"
-                    style={{ backgroundImage: `url(${profile})` }}
+                    className="pointer-events-none absolute inset-0 -z-20 bg-[radial-gradient(ellipse_at_80%_35%,#e4eaf0,transparent_65%)]"
                   />
-                  <div className="pointer-events-none relative mx-auto mb-8 mt-10 aspect-square w-[min(60vw,260px)] shrink-0 overflow-hidden rounded-full bg-gray-900 shadow-2xl ring-1 ring-white/15 lg:absolute lg:right-[9%] lg:top-1/2 lg:m-0 lg:w-[min(29vw,400px)] lg:-translate-y-1/2">
+                  <div aria-hidden="true" className="pointer-events-none absolute -right-32 -top-32 -z-10 h-[32rem] w-[32rem] rounded-full border border-slate-300/50 lg:right-[-5%] lg:top-1/2 lg:h-[min(65vw,850px)] lg:w-[min(65vw,850px)] lg:-translate-y-1/2" />
+                  <div aria-hidden="true" className="pointer-events-none absolute -bottom-48 -left-40 -z-10 h-96 w-96 rounded-full border border-slate-300/40" />
+                  <div className="pointer-events-none relative mx-auto mb-6 mt-6 aspect-square w-[min(56vw,24svh,240px)] shrink-0 overflow-hidden rounded-full bg-white shadow-xl shadow-slate-900/10 ring-1 ring-gray-200 lg:absolute lg:right-[9%] lg:top-1/2 lg:m-0 lg:w-[min(29vw,400px)] lg:-translate-y-1/2">
                     <img
                       src={profile}
                       alt={lang === "fr" ? "Portrait de Jérémy Cao" : "Portrait of Jérémy Cao"}
                       className="h-full w-full object-cover object-center"
                     />
                   </div>
-                  <div
-                    aria-hidden="true"
-                    className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-t from-gray-950 via-gray-950/40 to-transparent lg:bg-gradient-to-r lg:from-gray-950 lg:via-gray-950/60 lg:to-transparent"
-                  />
                   <div className="px-6 pb-[max(2rem,env(safe-area-inset-bottom))] pt-0 lg:w-[54%] lg:py-16 lg:pl-[7%] lg:pr-8">
-                    <p className="text-sm font-medium text-white/90">Jérémy Cao</p>
-                    <p className="mt-2 text-xs font-semibold leading-relaxed tracking-wide text-white/70">
-                      UX/UI Designer · IHM · {lang === "fr" ? "Systèmes complexes" : "Complex systems"}
+                    <p className="text-sm font-medium text-gray-900">Jérémy Cao</p>
+                    <p className="mt-2 text-xs font-semibold leading-relaxed tracking-wide text-gray-600">
+                      Product Designer · {lang === "fr" ? "Analyse, technique & usages" : "Analysis, technology & people"}
                     </p>
-                    <h1 id="home-intro-title" className="mt-4 max-w-3xl text-[2.4rem] font-semibold leading-[1.08] tracking-tight lg:text-5xl xl:text-6xl">
+                    <h1 id="home-intro-title" className="mt-4 max-w-3xl text-[clamp(1.8rem,4.5svh,2.4rem)] font-semibold leading-[1.08] tracking-tight lg:text-5xl xl:text-6xl">
                       {t.home.heroTitle}
                     </h1>
-                    <p className="mt-5 max-w-xl text-sm leading-relaxed text-white/85 lg:text-base lg:leading-7">
+                    <p className="mt-5 max-w-xl text-sm leading-relaxed text-gray-600 lg:text-base lg:leading-7">
                       {t.home.heroDesc}
                     </p>
                     <button
                       type="button"
                       autoFocus
                       onClick={closeIntro}
-                      className="mt-7 inline-flex min-h-12 items-center gap-5 rounded-xl border border-white/30 bg-white/10 px-6 py-4 text-sm font-medium text-white backdrop-blur-sm transition-colors hover:bg-white/20 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+                      className="mt-7 inline-flex min-h-12 items-center gap-5 rounded-xl bg-gray-900 px-6 py-4 text-sm font-medium text-white transition-colors hover:bg-gray-700 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gray-900"
                     >
                       {t.home.ctaProjects}
                       <span aria-hidden="true">↓</span>

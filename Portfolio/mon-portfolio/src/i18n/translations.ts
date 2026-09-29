@@ -22,9 +22,9 @@ export const translations = {
       title: "Trois expériences, trois contextes.",
       desc: "Présentation de case studies avec une mise en avant du problème, de la démarche et du résultat.",
 
-      heroTitle: "Je transforme des idées en expériences simples.",
+      heroTitle: "Comprendre les usages, explorer les possibles, construire des solutions.",
       heroDesc:
-        "Je travaille à l’intersection du design d’expérience, de l’interface et de l’interaction, avec une appétence pour les systèmes complexes. Mon objectif : rendre les produits clairs, cohérents et intuitifs.",
+        "Product Designer aujourd’hui, j’ai construit mon approche au fil d’un parcours entre analyse, technique et conception. J’aime comprendre comment les choses fonctionnent, confronter les idées aux usages et donner forme à des solutions concrètes.",
 
       ctaProjects: "Voir mes projets",
       ctaContact: "Me contacter",
@@ -200,9 +200,9 @@ export const translations = {
           "Prototype universitaire utilisant une adaptation de l’algorithme de Dijkstra appliqué aux données SIG.",
       },
       portfolio: {
-        title: "Portfolio UX/UI — Concevoir une expérience recruteur",
+        title: "Portfolio — Choix UX/UI sur ordinateur et mobile",
         role: "Product Designer · Projet personnel",
-        desc: "Conception d’un portfolio pensé comme une expérience produit : storytelling, hiérarchisation de l’information, crédibilité visuelle et mise en valeur des projets.",
+        desc: "Mes réflexions et mes choix pour organiser les contenus, rendre les interactions visibles et adapter la consultation des projets à l’ordinateur et au mobile.",
       },
     },
 
@@ -1068,10 +1068,10 @@ export const translations = {
       hero: {
         kicker: "Portfolio · UX/UI · Projet personnel",
 
-        title: "Conception et développement de mon portfolio UX/UI",
+        title: "Un même portfolio, deux façons de l’explorer",
 
         desc:
-          "Ce projet consistait à concevoir un portfolio capable de présenter mes projets, mon parcours et ma manière de travailler de façon claire et structurée.",
+          "Comment passer d’une page longue à un portfolio adapté à chaque écran ? Mes choix de navigation et d’interface, illustrés par les versions avant et après.",
 
         tags: [
           "UX/UI",
@@ -1085,25 +1085,25 @@ export const translations = {
         context: {
           eyebrow: "Contexte",
 
-          title: "Créer un portfolio lisible et structuré",
+          title: "Présenter mes projets simplement",
 
           paragraphs: [
-            "L’objectif était de concevoir un portfolio capable de présenter plusieurs projets UX/UI avec différents niveaux de détail.",
-            "Je voulais également créer une structure suffisamment flexible pour ajouter de nouveaux projets facilement tout en gardant une cohérence visuelle et éditoriale.",
+            "Au départ, l’accueil réunissait présentation, parcours, démarche et projets. Cette vue d’ensemble allongeait l’accès aux réalisations.",
+            "J’ai séparé la présentation, le choix d’un projet et sa lecture détaillée. Le site React partage cette structure en français et en anglais.",
           ],
 
           cards: [
             {
               title: "Hiérarchiser l’information",
-              text: "Rendre les projets rapidement compréhensibles.",
+              text: "Distinguer la présentation, la sélection des projets et leur lecture détaillée.",
             },
             {
-              title: "Créer une structure réutilisable",
-              text: "Faciliter l’ajout de futurs case studies.",
+              title: "Identifier les actions",
+              text: "Rendre visibles les cartes cliquables et les commandes de navigation.",
             },
             {
-              title: "Assurer la cohérence",
-              text: "Uniformiser les composants et les layouts.",
+              title: "Adapter la lecture",
+              text: "Utiliser l’espace du bureau et répartir les contenus sur le petit écran.",
             },
           ],
         },
@@ -1111,45 +1111,45 @@ export const translations = {
         storytelling: {
           eyebrow: "Architecture",
 
-          title: "Structurer le portfolio comme un parcours",
+          title: "Entrer, explorer, revenir",
 
           paragraphs: [
-            "J’ai organisé le portfolio autour d’une progression simple : introduction, parcours, projets puis contact.",
-            "Cette structure permet de guider la lecture et d’éviter une navigation trop fragmentée.",
+            "L’overlay pose le contexte, puis disparaît pour laisser place aux projets. Sur ordinateur, chaque étude de cas se lit librement grâce au sommaire.",
+            "Le retour retrouve la position dans la grille. Pour les projets confidentiels comme Renault, la page présente le contexte et réserve les détails à un échange.",
           ],
 
           steps: [
-            "Introduction",
-            "Parcours",
-            "Projets",
-            "Compétences",
-            "Contact",
+            "Présentation en overlay",
+            "Grille des projets",
+            "Choix d’une étude de cas",
+            "Lecture par sections",
+            "Retour aux projets",
           ],
 
           conclusion:
-            "Chaque section a été pensée pour introduire progressivement les informations importantes.",
+            "Une fois fermée, l’introduction ne revient pas entre deux projets.",
         },
 
         journey: {
           eyebrow: "Parcours",
 
-          title: "Concevoir une section parcours plus visuelle",
+          title: "Donner sa place au parcours",
 
           paragraphs: [
-            "Je voulais éviter une timeline classique trop dense visuellement.",
-            "La section parcours a donc été conçue avec de grands visuels, des cartes flottantes et une mise en page plus éditoriale.",
+            "La fresque horizontale de l’accueil est devenue une page Parcours dédiée : une lecture verticale, avec consultation et téléchargement du CV.",
+            "Après plusieurs essais de taille, j’ai retenu un portrait circulaire sur fond clair. Il accompagne une présentation de mon profil hybride sans occuper tout l’écran.",
           ],
 
           cards: [
             {
-              title: "Cartes flottantes",
+              title: "Présence personnelle",
               text:
-                "Séparer les informations secondaires du contenu principal.",
+                "Garder un visage identifiable sans lui faire occuper tout l’écran.",
             },
             {
-              title: "Visuels larges",
+              title: "Deux niveaux de lecture",
               text:
-                "Donner plus d’importance aux différentes étapes du parcours.",
+                "Une présentation courte à l’entrée et un parcours détaillé sur une page dédiée.",
             },
           ],
         },
@@ -1157,28 +1157,28 @@ export const translations = {
         designSystem: {
           eyebrow: "UI System",
 
-          title: "Créer un système visuel cohérent",
+          title: "Rendre les interactions visibles",
 
           items: [
             {
-              title: "Palette simple",
+              title: "Continuité visuelle",
               text:
-                "Limiter les couleurs pour garder le focus sur les projets.",
+                "Un même fond clair, de l’introduction aux projets.",
             },
             {
-              title: "Espacements",
+              title: "Cartes délimitées",
               text:
-                "Créer une lecture plus aérée et plus lisible.",
+                "Bordures, ombre légère et retour à l’appui signalent la zone cliquable.",
             },
             {
-              title: "Animations discrètes",
+              title: "Dimensions constantes",
               text:
-                "Utiliser le motion pour accompagner la navigation.",
+                "Images 4:3 et trois lignes par titre : des cartes régulières, avec les titres longs tronqués.",
             },
             {
               title: "Composants réutilisables",
               text:
-                "Uniformiser les cartes, tags et layouts.",
+                "Des styles partagés, avec un cadrage propre à chaque couverture.",
             },
           ],
         },
@@ -1186,32 +1186,30 @@ export const translations = {
         mobile: {
           eyebrow: "Responsive",
 
-          title: "Adapter l’expérience au mobile",
+          title: "Une grille et des stories sur mobile",
 
           paragraphs: [
-            "Certaines interactions pensées pour desktop fonctionnaient moins bien sur mobile.",
-            "J’ai simplifié certaines animations et ajusté la hiérarchie pour améliorer la lisibilité.",
-            "L’objectif était de conserver une navigation fluide sur tous les formats.",
+            "Les cartes empilées rendaient la page trop longue. Après avoir exploré plusieurs modèles d’applications, j’ai retenu une grille inspirée d’Airbnb : vignettes compactes, badges Pro/Perso et filtres.",
+            "Pour lire un projet, le format stories découpe le contenu en étapes. D’abord ajusté sur GoodPlanet, il distingue le retour à l’accueil en haut et les flèches de lecture en bas, avec une progression cliquable.",
+            "Chaque couverture a son cadrage et un dégradé pour le texte. Le logo GoodPlanet est moins zoomé pour préserver ses écritures.",
           ],
 
-          takeawayTitle: "Constat",
+          takeawayTitle: "Choix de conception",
 
           takeaway:
-            "Les interactions doivent rester au service de la lisibilité et de la navigation.",
+            "Adapter le mode de consultation au support, tout en gardant des repères communs.",
         },
 
         outcome: {
           eyebrow: "Résultat",
 
-          title: "Ce que ce projet m’a permis de travailler",
+          title: "Ce qui a été mis en place",
 
           items: [
-            "Architecture de l’information",
-            "Conception de composants réutilisables",
-            "Structuration de case studies",
-            "Responsive design",
-            "Implémentation front-end avec React",
-            "Cohérence UX/UI à l’échelle d’un site complet",
+            "Une introduction séparée de l’exploration des projets.",
+            "Une grille mobile, un sommaire bureau et des stories.",
+            "Un parcours dédié et un site bilingue.",
+            "Des avant/après qui documentent les choix, sans gains mesurés revendiqués.",
           ],
         },
       },
@@ -1220,7 +1218,7 @@ export const translations = {
         kicker: "Fin du case study",
 
         title:
-          "Un projet utilisé comme terrain d’expérimentation UX/UI et front-end.",
+          "Un site pour explorer, mettre en œuvre et questionner mes choix UX/UI.",
       },
     },
   },
@@ -1249,9 +1247,9 @@ export const translations = {
       desc:
         "Case studies highlighting the problem, the approach, and the outcome.",
 
-      heroTitle: "I turn ideas into simple experiences.",
+      heroTitle: "Understand people, explore possibilities, build solutions.",
       heroDesc:
-        "I work at the intersection of UX, UI, and interaction design, with a strong interest in complex systems. My focus: clarity, consistency, and usability.",
+        "Now working as a Product Designer, I developed my approach through a background spanning analysis, technology and design. I enjoy understanding how things work, testing ideas against everyday use and shaping practical solutions.",
 
       ctaProjects: "View my work",
       ctaContact: "Contact me",
@@ -1427,9 +1425,9 @@ export const translations = {
           "Academic prototype using a Dijkstra-based algorithm adapted for GIS data.",
       },
       portfolio: {
-        title: "UX/UI Portfolio — Designing a recruiter experience",
+        title: "Portfolio — UX/UI choices for desktop and mobile",
         role: "Product Designer · Personal project",
-        desc: "Designing a portfolio as a product experience focused on storytelling, information hierarchy and project presentation.",
+        desc: "My reasoning and choices for organizing content, making interactions visible and adapting project exploration to desktop and mobile.",
       },
     },
 
@@ -2295,10 +2293,10 @@ export const translations = {
       hero: {
         kicker: "Portfolio · UX/UI · Personal project",
 
-        title: "Designing and building my UX/UI portfolio",
+        title: "One portfolio, two ways to explore it",
 
         desc:
-          "This project focused on designing a portfolio able to present my projects, background and working approach in a clear and structured way.",
+          "How did a long page become a portfolio adapted to each screen? My navigation and interface choices, illustrated with before-and-after views.",
 
         tags: [
           "UX/UI",
@@ -2312,25 +2310,25 @@ export const translations = {
         context: {
           eyebrow: "Context",
 
-          title: "Creating a clear and structured portfolio",
+          title: "Presenting my projects simply",
 
           paragraphs: [
-            "The goal was to design a portfolio able to present several UX/UI projects with different levels of detail.",
-            "I also wanted to create a structure flexible enough to add new projects easily while keeping visual and editorial consistency.",
+            "The original homepage combined my introduction, background, approach and projects. That overview made the projects harder to reach.",
+            "I separated the introduction, project selection and detailed reading. The React site shares this structure in French and English.",
           ],
 
           cards: [
             {
               title: "Information hierarchy",
-              text: "Make projects quickly understandable.",
+              text: "Distinguish the introduction, project selection and detailed reading.",
             },
             {
-              title: "Reusable structure",
-              text: "Make future case studies easier to add.",
+              title: "Recognizable actions",
+              text: "Make clickable cards and navigation controls visible.",
             },
             {
-              title: "Consistency",
-              text: "Standardize components and layouts.",
+              title: "Reading across devices",
+              text: "Use desktop space and divide content into manageable sections on smaller screens.",
             },
           ],
         },
@@ -2338,45 +2336,45 @@ export const translations = {
         storytelling: {
           eyebrow: "Architecture",
 
-          title: "Structuring the portfolio as a journey",
+          title: "Enter, explore, return",
 
           paragraphs: [
-            "I structured the portfolio around a simple progression: introduction, background, projects and contact.",
-            "This structure helps guide navigation and avoids fragmented browsing.",
+            "The overlay introduces me, then closes to reveal the projects. On desktop, a table of contents lets visitors explore each case study freely.",
+            "Returning restores the position in the grid. For confidential projects such as Renault, the page provides context and reserves details for a conversation.",
           ],
 
           steps: [
-            "Introduction",
-            "Background",
-            "Projects",
-            "Skills",
-            "Contact",
+            "Introduction overlay",
+            "Project grid",
+            "Case study selection",
+            "Reading by section",
+            "Return to projects",
           ],
 
           conclusion:
-            "Each section was designed to progressively introduce important information.",
+            "Once dismissed, the introduction stays closed between projects.",
         },
 
         journey: {
           eyebrow: "Journey",
 
-          title: "Designing a more visual journey section",
+          title: "Giving my background its own space",
 
           paragraphs: [
-            "I wanted to avoid a traditional timeline that felt visually dense.",
-            "The journey section was designed with large visuals, floating cards and a more editorial layout.",
+            "The homepage’s horizontal timeline became a dedicated Journey page: a vertical reading experience with options to view and download my CV.",
+            "After trying several sizes, I chose a circular portrait on a light background. It accompanies my hybrid profile without taking over the screen.",
           ],
 
           cards: [
             {
-              title: "Floating cards",
+              title: "Personal presence",
               text:
-                "Separate secondary information from the main content.",
+                "Keep an identifiable face without letting it take over the screen.",
             },
             {
-              title: "Large visuals",
+              title: "Two levels of detail",
               text:
-                "Give more importance to each career step.",
+                "A short introduction on arrival and a detailed background on a dedicated page.",
             },
           ],
         },
@@ -2384,28 +2382,28 @@ export const translations = {
         designSystem: {
           eyebrow: "UI System",
 
-          title: "Building a coherent visual system",
+          title: "Making interactions visible",
 
           items: [
             {
-              title: "Simple palette",
+              title: "Visual continuity",
               text:
-                "Limit colors to keep focus on projects.",
+                "A consistent light background, from introduction to projects.",
             },
             {
-              title: "Spacing",
+              title: "Defined cards",
               text:
-                "Create a cleaner and more readable layout.",
+                "Borders, subtle shadows and pressed feedback identify clickable areas.",
             },
             {
-              title: "Subtle motion",
+              title: "Consistent dimensions",
               text:
-                "Use motion to support navigation.",
+                "4:3 images and three lines per title keep cards consistent; longer titles are truncated.",
             },
             {
               title: "Reusable components",
               text:
-                "Standardize cards, tags and layouts.",
+                "Shared styles, with individual framing for each cover.",
             },
           ],
         },
@@ -2413,32 +2411,30 @@ export const translations = {
         mobile: {
           eyebrow: "Responsive",
 
-          title: "Adapting the experience for mobile",
+          title: "A mobile grid and stories",
 
           paragraphs: [
-            "Some desktop interactions worked less effectively on mobile.",
-            "I simplified some animations and adjusted hierarchy to improve readability.",
-            "The goal was to keep navigation fluid across devices.",
+            "Stacked cards made the page too long. After exploring familiar app patterns, I chose an Airbnb-inspired grid with compact thumbnails, Pro/Personal badges and filters.",
+            "Stories divide project reading into steps. First refined on GoodPlanet, the pattern separates the top Back button from the bottom reading arrows, with clickable progress indicators.",
+            "Each cover has its own framing and a gradient for the text. GoodPlanet’s logo is less zoomed in to preserve its lettering.",
           ],
 
-          takeawayTitle: "Observation",
+          takeawayTitle: "Design choice",
 
           takeaway:
-            "Interactions should always support readability and navigation.",
+            "Adapt browsing to the device while keeping shared points of reference.",
         },
 
         outcome: {
           eyebrow: "Outcome",
 
-          title: "What this project allowed me to work on",
+          title: "What has been implemented",
 
           items: [
-            "Information architecture",
-            "Reusable component design",
-            "Case study structuring",
-            "Responsive design",
-            "Front-end implementation with React",
-            "UX/UI consistency across a full website",
+            "An introduction separate from project exploration.",
+            "A mobile grid, desktop contents and stories.",
+            "A dedicated Journey page and bilingual navigation.",
+            "Before-and-after views documenting decisions without claiming measured gains.",
           ],
         },
       },
@@ -2447,7 +2443,7 @@ export const translations = {
         kicker: "End of case study",
 
         title:
-          "A project used as a UX/UI and front-end experimentation playground.",
+          "A website for exploring, implementing and questioning my UX/UI decisions.",
       },
     },
   },

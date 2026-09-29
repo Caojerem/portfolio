@@ -5,9 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
 
 import portfolioCover from "../assets/portfolio/cover.svg";
-import journeyImg from "../assets/portfolio/journey.png";
-import systemImg from "../assets/portfolio/system.png";
-import mobileImg from "../assets/portfolio/mobile.png";
+import PortfolioEvidence from "../components/PortfolioEvidence";
 
 
 import type { ReactNode } from "react";
@@ -75,28 +73,6 @@ function Callout({
   );
 }
 
-function Figure({
-  src,
-  alt,
-  caption,
-}: {
-  src: string;
-  alt: string;
-  caption?: string;
-}) {
-  return (
-    <figure className="rounded-2xl overflow-hidden border bg-white">
-      <img src={src} alt={alt} className="w-full h-auto" />
-
-      {caption ? (
-        <figcaption className="px-4 py-3 text-sm text-gray-600">
-          {caption}
-        </figcaption>
-      ) : null}
-    </figure>
-  );
-}
-
 export default function PortfolioCaseStudy() {
   const { lang, t } = useLanguage();
 
@@ -149,7 +125,7 @@ export default function PortfolioCaseStudy() {
       content: (
         <div className="relative min-h-[calc(100svh-10.5rem)] overflow-hidden rounded-[28px] bg-gray-900">
           <MobileCoverArtwork src={portfolioCover} variant="portfolio" />
-          <div className="absolute inset-x-0 bottom-0 p-6 text-white">
+          <div className="relative flex min-h-[calc(100svh-10.5rem)] flex-col justify-end px-6 pb-6 pt-48 text-white">
             <p className="text-xs font-semibold tracking-[0.14em] text-white/75">{t.portfolioCaseStudy.hero.kicker}</p>
             <h1 className="mt-3 text-4xl font-bold leading-[1.05] tracking-tight">{t.portfolioCaseStudy.hero.title}</h1>
             <p className="mt-4 max-w-md text-sm leading-relaxed text-white/85">{t.portfolioCaseStudy.hero.desc}</p>
@@ -158,19 +134,19 @@ export default function PortfolioCaseStudy() {
       ),
     },
     { label: t.portfolioCaseStudy.sections.context.title, content: (
-      <div><p className="text-xs font-semibold text-gray-500">{t.portfolioCaseStudy.sections.context.eyebrow}</p><h2 className="mt-2 text-3xl font-semibold">{t.portfolioCaseStudy.sections.context.title}</h2><div className="mt-4 space-y-3 text-gray-600">{t.portfolioCaseStudy.sections.context.paragraphs.map((p:string)=><p key={p}>{p}</p>)}</div><div className="mt-6 space-y-3">{t.portfolioCaseStudy.sections.context.cards.map((c)=><Callout key={c.title} label="Focus" title={c.title}>{c.text}</Callout>)}</div></div>
+      <div><p className="text-xs font-semibold text-gray-500">{t.portfolioCaseStudy.sections.context.eyebrow}</p><h2 className="mt-2 text-3xl font-semibold">{t.portfolioCaseStudy.sections.context.title}</h2><div className="mt-4 space-y-3 text-gray-600">{t.portfolioCaseStudy.sections.context.paragraphs.map((p:string)=><p key={p}>{p}</p>)}</div><div className="mt-6 space-y-3">{t.portfolioCaseStudy.sections.context.cards.map((c)=><Callout key={c.title} label="Focus" title={c.title}>{c.text}</Callout>)}</div><PortfolioEvidence section="context" /></div>
     )},
     { label: t.portfolioCaseStudy.sections.storytelling.title, content: (
-      <div><p className="text-xs font-semibold text-gray-500">{t.portfolioCaseStudy.sections.storytelling.eyebrow}</p><h2 className="mt-2 text-3xl font-semibold">{t.portfolioCaseStudy.sections.storytelling.title}</h2><div className="mt-4 space-y-3 text-gray-600">{t.portfolioCaseStudy.sections.storytelling.paragraphs.map((p:string)=><p key={p}>{p}</p>)}</div><div className="mt-6 grid grid-cols-2 gap-3">{t.portfolioCaseStudy.sections.storytelling.steps.map((s:string,i:number)=><div key={s} className="rounded-2xl border p-4"><p className="text-xs text-gray-400">0{i+1}</p><p className="mt-2 text-sm font-medium">{s}</p></div>)}</div><p className="mt-5 text-gray-600">{t.portfolioCaseStudy.sections.storytelling.conclusion}</p></div>
+      <div><p className="text-xs font-semibold text-gray-500">{t.portfolioCaseStudy.sections.storytelling.eyebrow}</p><h2 className="mt-2 text-3xl font-semibold">{t.portfolioCaseStudy.sections.storytelling.title}</h2><div className="mt-4 space-y-3 text-gray-600">{t.portfolioCaseStudy.sections.storytelling.paragraphs.map((p:string)=><p key={p}>{p}</p>)}</div><div className="mt-6 grid grid-cols-2 gap-3">{t.portfolioCaseStudy.sections.storytelling.steps.map((s:string,i:number)=><div key={s} className="rounded-2xl border p-4"><p className="text-xs text-gray-400">0{i+1}</p><p className="mt-2 text-sm font-medium">{s}</p></div>)}</div><p className="mt-5 text-gray-600">{t.portfolioCaseStudy.sections.storytelling.conclusion}</p><PortfolioEvidence section="storytelling" /></div>
     )},
     { label: t.portfolioCaseStudy.sections.journey.title, content: (
-      <div><p className="text-xs font-semibold text-gray-500">{t.portfolioCaseStudy.sections.journey.eyebrow}</p><h2 className="mt-2 text-3xl font-semibold">{t.portfolioCaseStudy.sections.journey.title}</h2><div className="mt-4 space-y-3 text-gray-600">{t.portfolioCaseStudy.sections.journey.paragraphs.map((p:string)=><p key={p}>{p}</p>)}</div><div className="mt-6"><Figure src={journeyImg} alt="Journey section"/></div></div>
+      <div><p className="text-xs font-semibold text-gray-500">{t.portfolioCaseStudy.sections.journey.eyebrow}</p><h2 className="mt-2 text-3xl font-semibold">{t.portfolioCaseStudy.sections.journey.title}</h2><div className="mt-4 space-y-3 text-gray-600">{t.portfolioCaseStudy.sections.journey.paragraphs.map((p:string)=><p key={p}>{p}</p>)}</div><div className="mt-6"><PortfolioEvidence section="journey" /></div></div>
     )},
     { label: t.portfolioCaseStudy.sections.designSystem.title, content: (
-      <div><p className="text-xs font-semibold text-gray-500">{t.portfolioCaseStudy.sections.designSystem.eyebrow}</p><h2 className="mt-2 text-3xl font-semibold">{t.portfolioCaseStudy.sections.designSystem.title}</h2><div className="mt-6"><Figure src={systemImg} alt="Design system"/></div><div className="mt-6 space-y-4">{t.portfolioCaseStudy.sections.designSystem.items.map((i)=><div key={i.title}><h3 className="font-semibold">{i.title}</h3><p className="mt-1 text-sm text-gray-600">{i.text}</p></div>)}</div></div>
+      <div><p className="text-xs font-semibold text-gray-500">{t.portfolioCaseStudy.sections.designSystem.eyebrow}</p><h2 className="mt-2 text-3xl font-semibold">{t.portfolioCaseStudy.sections.designSystem.title}</h2><div className="mt-6"><PortfolioEvidence section="designSystem" /></div><div className="mt-6 space-y-4">{t.portfolioCaseStudy.sections.designSystem.items.map((i)=><div key={i.title}><h3 className="font-semibold">{i.title}</h3><p className="mt-1 text-sm text-gray-600">{i.text}</p></div>)}</div></div>
     )},
     { label: t.portfolioCaseStudy.sections.mobile.title, content: (
-      <div><p className="text-xs font-semibold text-gray-500">{t.portfolioCaseStudy.sections.mobile.eyebrow}</p><h2 className="mt-2 text-3xl font-semibold">{t.portfolioCaseStudy.sections.mobile.title}</h2><div className="mt-4 space-y-3 text-gray-600">{t.portfolioCaseStudy.sections.mobile.paragraphs.map((p:string)=><p key={p}>{p}</p>)}</div><div className="mt-6"><Figure src={mobileImg} alt="Mobile experience"/></div><div className="mt-5"><Callout label={t.portfolioCaseStudy.sections.mobile.takeawayTitle} title={t.portfolioCaseStudy.sections.mobile.takeaway}><></></Callout></div></div>
+      <div><p className="text-xs font-semibold text-gray-500">{t.portfolioCaseStudy.sections.mobile.eyebrow}</p><h2 className="mt-2 text-3xl font-semibold">{t.portfolioCaseStudy.sections.mobile.title}</h2><div className="mt-4 space-y-3 text-gray-600">{t.portfolioCaseStudy.sections.mobile.paragraphs.map((p:string)=><p key={p}>{p}</p>)}</div><div className="mt-6"><PortfolioEvidence section="mobile" /></div><div className="mt-5"><Callout label={t.portfolioCaseStudy.sections.mobile.takeawayTitle} title={t.portfolioCaseStudy.sections.mobile.takeaway}><></></Callout></div></div>
     )},
     { label: t.portfolioCaseStudy.sections.outcome.title, content: (
       <div><p className="text-xs font-semibold text-gray-500">{t.portfolioCaseStudy.sections.outcome.eyebrow}</p><h2 className="mt-2 text-3xl font-semibold">{t.portfolioCaseStudy.sections.outcome.title}</h2><div className="mt-6 space-y-3">{t.portfolioCaseStudy.sections.outcome.items.map((i:string)=><div key={i} className="rounded-2xl border p-5 text-gray-700">{i}</div>)}</div></div>
@@ -318,7 +294,7 @@ export default function PortfolioCaseStudy() {
           <aside className="lg:col-span-3">
             <div className="lg:sticky lg:top-20">
               <p className="text-xs font-semibold tracking-wide text-gray-500">
-                SUMMARY
+                {lang === "fr" ? "SOMMAIRE" : "CONTENTS"}
               </p>
 
               <nav className="mt-4 space-y-2">
@@ -364,6 +340,8 @@ export default function PortfolioCaseStudy() {
               </div>
             </Section>
 
+            <PortfolioEvidence section="context" />
+
             {/* STORYTELLING */}
             <Section
               id="storytelling"
@@ -397,6 +375,7 @@ export default function PortfolioCaseStudy() {
               <p>
                 {t.portfolioCaseStudy.sections.storytelling.conclusion}
               </p>
+              <PortfolioEvidence section="storytelling" />
             </Section>
 
             {/* JOURNEY */}
@@ -405,7 +384,7 @@ export default function PortfolioCaseStudy() {
               eyebrow={t.portfolioCaseStudy.sections.journey.eyebrow}
               title={t.portfolioCaseStudy.sections.journey.title}
             >
-              <div className="grid lg:grid-cols-2 gap-10 items-center">
+              <div className="space-y-8">
                 <div>
                   {t.portfolioCaseStudy.sections.journey.paragraphs.map(
                     (paragraph: string, index: number) => (
@@ -430,10 +409,7 @@ export default function PortfolioCaseStudy() {
                   </div>
                 </div>
 
-                <Figure
-                  src={journeyImg}
-                  alt="Journey section"
-                />
+                <PortfolioEvidence section="journey" />
               </div>
             </Section>
 
@@ -443,11 +419,8 @@ export default function PortfolioCaseStudy() {
               eyebrow={t.portfolioCaseStudy.sections.designSystem.eyebrow}
               title={t.portfolioCaseStudy.sections.designSystem.title}
             >
-              <div className="grid lg:grid-cols-2 gap-10 items-center">
-                <Figure
-                  src={systemImg}
-                  alt="Design system"
-                />
+              <div className="space-y-8">
+                <PortfolioEvidence section="designSystem" />
 
                 <div className="space-y-6">
                   {t.portfolioCaseStudy.sections.designSystem.items.map(
@@ -473,7 +446,7 @@ export default function PortfolioCaseStudy() {
               eyebrow={t.portfolioCaseStudy.sections.mobile.eyebrow}
               title={t.portfolioCaseStudy.sections.mobile.title}
             >
-              <div className="grid lg:grid-cols-2 gap-10 items-center">
+              <div className="space-y-8">
                 <div>
                   {t.portfolioCaseStudy.sections.mobile.paragraphs.map(
                     (paragraph: string, index: number) => (
@@ -493,10 +466,7 @@ export default function PortfolioCaseStudy() {
                   </div>
                 </div>
 
-                <Figure
-                  src={mobileImg}
-                  alt="Mobile experience"
-                />
+                <PortfolioEvidence section="mobile" />
               </div>
             </Section>
 
