@@ -7,6 +7,7 @@ export default function Navbar() {
   const { lang, t, setLang } = useLanguage();
   const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
+  const header = useRef<HTMLElement>(null);
   const menuButton = useRef<HTMLButtonElement>(null);
   const copy = journeyPage[lang];
   const journey = `/${lang}/${lang === "fr" ? "parcours" : "journey"}`;
@@ -17,6 +18,15 @@ export default function Navbar() {
     { to: `/${lang}#contact`, label: t.nav.contact },
   ];
   useEffect(() => { document.documentElement.lang = lang; }, [lang]);
+  useEffect(() => {
+    const element = header.current;
+    if (!element) return;
+    const updateHeight = () => document.documentElement.style.setProperty("--site-header-height", element.getBoundingClientRect().height + "px");
+    updateHeight();
+    const observer = new ResizeObserver(updateHeight);
+    observer.observe(element);
+    return () => { observer.disconnect(); document.documentElement.style.removeProperty("--site-header-height"); };
+  }, []);
   const languageButtons = () => <div className="flex items-center gap-1" aria-label={copy.language}>
     {(["fr", "en"] as const).map((value) => <button key={value} type="button" aria-pressed={lang === value}
       onClick={() => { setLang(value); setMenuOpen(false); }}
@@ -25,7 +35,7 @@ export default function Navbar() {
   const navigationLinks = () => links.map(({ to, label }) => <Link key={to} to={to}
     onClick={() => setMenuOpen(false)} aria-current={`${location.pathname}${location.hash}` === to ? "location" : undefined}
     className="inline-flex min-h-11 items-center py-2 text-sm text-gray-600 hover:text-black aria-[current=location]:font-semibold aria-[current=location]:text-black">{label}</Link>);
-  return <header className="sticky top-0 z-50 border-b border-gray-200 bg-white/90 backdrop-blur">
+  return <header ref={header} className="sticky top-0 z-50 border-b border-gray-200 bg-white/90 backdrop-blur">
     <div className="mx-auto max-w-6xl px-4 py-3 sm:px-6" onKeyDown={(event) => {
       if (event.key === "Escape" && menuOpen) { setMenuOpen(false); menuButton.current?.focus(); }
     }}>

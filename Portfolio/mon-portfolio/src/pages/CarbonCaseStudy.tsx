@@ -1,3 +1,4 @@
+import SwipeSteps from "../components/SwipeSteps";
 import MobileCoverArtwork from "../components/MobileCoverArtwork";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState, type ReactNode } from "react";
@@ -913,7 +914,7 @@ export default function CarbonCaseStudy() {
           étapes accessibles depuis la progression en haut et scroll interne dans les écrans longs.
       ========================================================= */}
       <div className="lg:hidden">
-        <header className="sticky top-0 z-40 border-b border-gray-200 bg-white/90 backdrop-blur">
+        <header className="sticky top-[var(--site-header-height,69px)] z-40 border-b border-gray-200 bg-white/95 backdrop-blur">
           <div className="mx-auto flex min-h-14 max-w-xl items-center justify-between px-4">
             <button
               onClick={handleBack}
@@ -951,7 +952,8 @@ export default function CarbonCaseStudy() {
         <main className="mx-auto max-w-xl px-3 pb-24 pt-3">
           <div className="relative overflow-hidden rounded-[28px] border border-gray-200 bg-white shadow-sm">
             <div className="min-h-[calc(100svh-150px)] px-1 pb-2 pt-1">
-              <AnimatePresence mode="wait">
+              <SwipeSteps currentStep={mobileStep} totalSteps={mobileSteps.length} onStepChange={goToStep}>
+<AnimatePresence mode="wait">
                 <motion.div
                   key={currentMobileStep.id}
                   initial={{ opacity: 0, x: 24 }}
@@ -963,6 +965,7 @@ export default function CarbonCaseStudy() {
                   {currentMobileStep.render()}
                 </motion.div>
               </AnimatePresence>
+</SwipeSteps>
             </div>
           </div>
 
@@ -970,7 +973,7 @@ export default function CarbonCaseStudy() {
             <div className="mx-auto flex max-w-xl items-center justify-between px-4 py-3 [padding-bottom:max(0.75rem,env(safe-area-inset-bottom))]">
               <button
                 onClick={goPrevious}
-                className="inline-flex min-h-10 min-w-10 items-center justify-start text-xl font-light text-gray-700 transition active:opacity-50"
+                className="inline-flex min-h-11 min-w-12 items-center justify-center rounded-xl border border-gray-300 bg-white text-2xl font-bold text-gray-900 shadow-sm transition active:bg-gray-100"
                 aria-label={mobileStep === 0 ? t.common.back : "Previous"}
               >
                 ←
@@ -978,7 +981,7 @@ export default function CarbonCaseStudy() {
 
               <button
                 onClick={goNext}
-                className="inline-flex min-h-10 min-w-10 items-center justify-end text-xl font-light text-gray-700 transition active:opacity-50"
+                className="inline-flex min-h-11 min-w-12 items-center justify-center rounded-xl border border-gray-300 bg-white text-2xl font-bold text-gray-900 shadow-sm transition active:bg-gray-100"
                 aria-label={
                   mobileStep === mobileSteps.length - 1
                     ? t.caseStudyCta.next

@@ -1,3 +1,4 @@
+import SwipeSteps from "../components/SwipeSteps";
 import MobileCoverArtwork from "../components/MobileCoverArtwork";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
@@ -141,7 +142,7 @@ export default function PersonalProject1() {
 <>
 
       <div className="lg:hidden min-h-screen bg-white text-gray-900 pb-20">
-        <header className="sticky top-0 z-40 border-b border-gray-200 bg-white/90 backdrop-blur">
+        <header className="sticky top-[var(--site-header-height,69px)] z-40 border-b border-gray-200 bg-white/95 backdrop-blur">
           <div className="mx-auto flex min-h-14 items-center justify-between px-4">
             <button
               onClick={handleBack}
@@ -169,7 +170,8 @@ export default function PersonalProject1() {
         </header>
 
         <main className="px-5 py-6">
-          <AnimatePresence mode="wait">
+          <SwipeSteps currentStep={mobileStep} totalSteps={mobileSteps.length} onStepChange={goMobileStep}>
+<AnimatePresence mode="wait">
             <motion.div
               key={mobileStep}
               initial={{ opacity: 0, x: 18 }}
@@ -181,13 +183,14 @@ export default function PersonalProject1() {
               {mobileSteps[mobileStep].content}
             </motion.div>
           </AnimatePresence>
+</SwipeSteps>
         </main>
 
         <div className="fixed inset-x-0 bottom-0 z-30 border-t border-gray-200 bg-white/95 backdrop-blur">
           <div className="mx-auto flex max-w-xl items-center justify-between px-4 py-3 [padding-bottom:max(0.75rem,env(safe-area-inset-bottom))]">
             <button
               onClick={goMobilePrevious}
-              className="inline-flex min-h-10 min-w-10 items-center justify-start text-xl font-light text-gray-700 transition active:opacity-50"
+              className="inline-flex min-h-11 min-w-12 items-center justify-center rounded-xl border border-gray-300 bg-white text-2xl font-bold text-gray-900 shadow-sm transition active:bg-gray-100"
               aria-label="Previous"
             >
               ←
@@ -200,7 +203,7 @@ export default function PersonalProject1() {
                   navigate(`/${lang}/project-2`);
                 }
               }}
-              className="inline-flex min-h-10 min-w-10 items-center justify-end text-xl font-light text-gray-700 transition active:opacity-50"
+              className="inline-flex min-h-11 min-w-12 items-center justify-center rounded-xl border border-gray-300 bg-white text-2xl font-bold text-gray-900 shadow-sm transition active:bg-gray-100"
               aria-label="Next"
             >
               →
